@@ -2,6 +2,10 @@ import os
 import sys
 import commands
 
+class ConfigurationError(Exception):
+    def __init__(self, reason):
+        Exception.__init__(self, "Configuration failed: %s" % reason)
+
 vars = Variables()
 vars.AddVariables(
   EnumVariable( 'order',
@@ -57,8 +61,8 @@ else:
 #
 
 # enforce restrictive C/C++-Code
-env.Append(CFLAGS   = ['-Wall', '-Werror', '-ansi'],
-           CXXFLAGS = ['-Wall', '-Werror', '-ansi'])
+env.Append(CFLAGS   = ['-Wall', '-Werror', '-ansi', '-xMIC-AVX512'],
+           CXXFLAGS = ['-Wall', '-Werror', '-ansi', '-xMIC-AVX512'])
 
 #
 # Compile mode settings
@@ -67,11 +71,11 @@ env.Append(CFLAGS   = ['-Wall', '-Werror', '-ansi'],
 # set (pre-)compiler flags for the compile modes
 if env['compileMode'] == 'debug':
   env.Append(CFLAGS  = ['-O0', '-g'],
-             CXXFLAGS = ['-O0', '-g'])
+             CXXFLAGS = ['-O0', '-g',])
 elif env['compileMode'] == 'release':
   env.Append(CPPDEFINES = ['NDEBUG'])
   env.Append(CFLAGS   = ['-O3'],
-             CXXFLAGS = ['-O3'])
+             CXXFLAGS = ['-O3'] )
 
 #
 # Basic preprocessor defines
