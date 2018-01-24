@@ -46,8 +46,8 @@ if env['compiler'] == 'intel':
     env['CXX'] = 'icpc'
     env['F90'] = 'ifort'
 elif env['compiler'] == 'gcc':
-    env['CC'] = 'gcc'
-    env['CXX'] = 'g++'
+    env['CC'] = 'mpicc'
+    env['CXX'] = 'mpic++'
     env['F90'] = 'gfortran'
 else:
     assert(false)

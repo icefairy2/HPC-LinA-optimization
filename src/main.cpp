@@ -1,5 +1,6 @@
 #include <cmath>
 #include <iostream>
+#include <mpi.h>
 
 #include "tclap/CmdLine.h"
 #include "typedefs.h"
@@ -98,6 +99,10 @@ void initScenario3(GlobalConstants& globals, Grid<Material>& materialGrid, Grid<
 
 int main(int argc, char** argv)
 {
+  MPI_Init(NULL, NULL);
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
   int scenario;
   double wfwInterval;
   std::string wfwBasename;
@@ -169,17 +174,20 @@ int main(int argc, char** argv)
   WaveFieldWriter waveFieldWriter(wfwBasename, globals, wfwInterval, static_cast<int>(ceil( sqrt(NUMBER_OF_BASIS_FUNCTIONS) )));
 
   int steps = simulate(globals, materialGrid, degreesOfFreedomGrid, waveFieldWriter, sourceterm);
-  
-  if (scenario == 0) {
-    double l2error[NUMBER_OF_QUANTITIES];
-    L2error(globals.endTime, globals, materialGrid, degreesOfFreedomGrid, l2error);
-    std::cout << "L2 error analysis" << std::endl << "=================" << std::endl;
-    std::cout << "Pressue (p):    " << l2error[0] << std::endl;
-    std::cout << "X-Velocity (u): " << l2error[1] << std::endl;
-    std::cout << "Y-Velocity (v): " << l2error[2] << std::endl;
+
+  if (rank == 0) {
+    if (scenario == 0) {
+      double l2error[NUMBER_OF_QUANTITIES];
+      L2error(globals.endTime, globals, materialGrid, degreesOfFreedomGrid, l2error);
+      std::cout << "L2 error analysis" << std::endl << "=================" << std::endl;
+      std::cout << "Pressue (p):    " << l2error[0] << std::endl;
+      std::cout << "X-Velocity (u): " << l2error[1] << std::endl;
+      std::cout << "Y-Velocity (v): " << l2error[2] << std::endl;
+    }
+
+    std::cout << "Total number of timesteps: " << steps << std::endl;
   }
-  
-  std::cout << "Total number of timesteps: " << steps << std::endl;
-  
+
+  MPI_Finalize();
   return 0;
 }
