@@ -34,7 +34,7 @@ void computeAder( double                  timestep,
     
     // derivatives[der] = -1/hx * tmp * A
     DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_QUANTITIES,
-            -1.0 / globals.hx, tmp, NUMBER_OF_BASIS_FUNCTIONS,
+            globals.inv_min_hx, tmp, NUMBER_OF_BASIS_FUNCTIONS,
             A, NUMBER_OF_QUANTITIES,
             1.0, derivatives[der], NUMBER_OF_BASIS_FUNCTIONS );
     
@@ -46,7 +46,7 @@ void computeAder( double                  timestep,
     
     // derivatives[der] += -1/hy * tmp * B
     DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_QUANTITIES,
-            -1.0 / globals.hy, tmp, NUMBER_OF_BASIS_FUNCTIONS,
+            globals.inv_min_hy, tmp, NUMBER_OF_BASIS_FUNCTIONS,
             B, NUMBER_OF_QUANTITIES,
             1.0, derivatives[der], NUMBER_OF_BASIS_FUNCTIONS );
 
@@ -77,7 +77,7 @@ void computeVolumeIntegral( GlobalConstants const&  globals,
   
   // Computes degreesOfFreedom += 1/hx tmp * A
   DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_QUANTITIES,
-          1.0 / globals.hx, tmp, NUMBER_OF_BASIS_FUNCTIONS,
+          globals.inv_hx, tmp, NUMBER_OF_BASIS_FUNCTIONS,
           A, NUMBER_OF_QUANTITIES,
           1.0, degreesOfFreedom, NUMBER_OF_BASIS_FUNCTIONS );
   
@@ -89,7 +89,7 @@ void computeVolumeIntegral( GlobalConstants const&  globals,
   
   // Computes degreesOfFreedom += 1/hy tmp * B
   DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_QUANTITIES,
-          1.0 / globals.hy, tmp, NUMBER_OF_BASIS_FUNCTIONS,
+          globals.inv_hy, tmp, NUMBER_OF_BASIS_FUNCTIONS,
           B, NUMBER_OF_QUANTITIES,
           1.0, degreesOfFreedom, NUMBER_OF_BASIS_FUNCTIONS );
 }

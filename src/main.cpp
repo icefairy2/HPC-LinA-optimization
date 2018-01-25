@@ -6,6 +6,7 @@
 #include "Simulator.h"
 #include "Grid.h"
 #include "InitialCondition.h"
+#include "Stopwatch.h"
 
 void initScenario0(GlobalConstants& globals, Grid<Material>& materialGrid, Grid<DegreesOfFreedom>& degreesOfFreedomGrid)
 {    
@@ -165,11 +166,20 @@ int main(int argc, char** argv)
   }
   
   globals.maxTimestep = determineTimestep(globals.hx, globals.hy, materialGrid);
+  globals.min_hx_by_hx_hy = -globals.hx / (globals.hx * globals.hy);
+  globals.min_hy_by_hx_hy = -globals.hy / (globals.hx * globals.hy);
+  globals.inv_hx = 1/globals.hx;
+  globals.inv_hy = 1/globals.hy;
+  globals.inv_min_hx = -globals.inv_hx;
+  globals.inv_min_hy = -globals.inv_hy;
+  globals.areaInv = 1. / (globals.hx * globals.hy);
   
   WaveFieldWriter waveFieldWriter(wfwBasename, globals, wfwInterval, static_cast<int>(ceil( sqrt(NUMBER_OF_BASIS_FUNCTIONS) )));
 
+  Stopwatch stopwatch;
+  stopwatch.start();
   int steps = simulate(globals, materialGrid, degreesOfFreedomGrid, waveFieldWriter, sourceterm);
-  
+  std::cout << "Time taken: " <<stopwatch.stop() * 1.0e6<< std::endl;
   if (scenario == 0) {
     double l2error[NUMBER_OF_QUANTITIES];
     L2error(globals.endTime, globals, materialGrid, degreesOfFreedomGrid, l2error);

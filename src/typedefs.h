@@ -13,6 +13,13 @@ struct GlobalConstants {
   int Y;
   double maxTimestep;
   double endTime;
+  double min_hx_by_hx_hy;
+  double min_hy_by_hx_hy;
+  double inv_hx;
+  double inv_hy;
+  double inv_min_hx;
+  double inv_min_hy;
+  double areaInv;
 };
 
 struct Material {
