@@ -24,7 +24,7 @@ double determineTimestep(double hx, double hy, Grid<Material>& materialGrid)
 int simulate( GlobalConstants const&  globals,
               Grid<Material>&         materialGrid,
               Grid<DegreesOfFreedom>& degreesOfFreedomGrid,
-              WaveFieldWriter&        waveFieldWriter,
+              WaveFieldWriter*        waveFieldWriter,
               SourceTerm&             sourceterm  )
 {
   int rank;
@@ -39,8 +39,8 @@ int simulate( GlobalConstants const&  globals,
   int step = 0;
   for (time = 0.0; time < globals.endTime; time += globals.maxTimestep) {
     degreesOfFreedomGrid.gather();
-    if (rank == 0)
-      waveFieldWriter.writeTimestep(time, degreesOfFreedomGrid);
+    if (waveFieldWriter)
+      waveFieldWriter->writeTimestep(time, degreesOfFreedomGrid);
   
     double timestep = std::min(globals.maxTimestep, globals.endTime - time);
 
@@ -120,8 +120,8 @@ int simulate( GlobalConstants const&  globals,
   }
 
   degreesOfFreedomGrid.gather();
-  if (rank == 0)
-    waveFieldWriter.writeTimestep(globals.endTime, degreesOfFreedomGrid, true);
+  if (waveFieldWriter)
+    waveFieldWriter->writeTimestep(globals.endTime, degreesOfFreedomGrid, true);
 
   return step;
 }
