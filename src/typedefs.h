@@ -9,8 +9,8 @@ typedef double DegreesOfFreedom[NUMBER_OF_DOFS];
 struct GlobalConstants {
   double hx;
   double hy;
-  int X;
-  int Y;
+  int X, pX;
+  int Y, pY;
   double maxTimestep;
   double endTime;
 };

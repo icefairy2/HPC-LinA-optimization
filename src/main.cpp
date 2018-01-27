@@ -7,6 +7,7 @@
 #include "Simulator.h"
 #include "Grid.h"
 #include "InitialCondition.h"
+#include "tclap/ValueArg.h"
 
 void initScenario0(GlobalConstants& globals, Grid<Material>& materialGrid, Grid<DegreesOfFreedom>& degreesOfFreedomGrid)
 {    
@@ -100,8 +101,9 @@ void initScenario3(GlobalConstants& globals, Grid<Material>& materialGrid, Grid<
 int main(int argc, char** argv)
 {
   MPI_Init(NULL, NULL);
-  int rank;
+  int rank, size;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  MPI_Comm_size(MPI_COMM_WORLD, &size);
 
   int scenario;
   double wfwInterval;
@@ -113,12 +115,16 @@ int main(int argc, char** argv)
     TCLAP::ValueArg<int> scenarioArg("s", "scenario", "Scenario. 0=Convergence test. 1=Checkerboard.", true, 0, "int");
     TCLAP::ValueArg<int> XArg("x", "x-number-of-cells", "Number of cells in x direction.", true, 0, "int");
     TCLAP::ValueArg<int> YArg("y", "y-number-of-cells", "Number of cells in y direction.", true, 0, "int");
+    TCLAP::ValueArg<int> mpiXArg("a", "mpi-x-number-of-cells", "Number of cells in x direction per process.", true, 0, "int");
+    TCLAP::ValueArg<int> mpiYArg("b", "mpi-y-number-of-cells", "Number of cells in y direction per process.", true, 0, "int");
     TCLAP::ValueArg<std::string> basenameArg("o", "output", "Basename of wavefield writer output. Leave empty for no output.", false, "", "string");
     TCLAP::ValueArg<double> intervalArg("i", "interval", "Time interval of wavefield writer.", false, 0.1, "double");
     TCLAP::ValueArg<double> timeArg("t", "end-time", "Final simulation time.", false, 0.5, "double");
     cmd.add(scenarioArg);
     cmd.add(XArg);
     cmd.add(YArg);
+    cmd.add(mpiXArg);
+    cmd.add(mpiYArg);
     cmd.add(basenameArg);
     cmd.add(intervalArg);
     cmd.add(timeArg);
@@ -128,6 +134,8 @@ int main(int argc, char** argv)
     scenario = scenarioArg.getValue();
     globals.X = XArg.getValue();
     globals.Y = YArg.getValue();
+    globals.pX = mpiXArg.getValue();
+    globals.pY = mpiYArg.getValue();
     wfwBasename = basenameArg.getValue();
     wfwInterval = intervalArg.getValue();
     globals.endTime = timeArg.getValue();
@@ -140,6 +148,14 @@ int main(int argc, char** argv)
       std::cerr << "X or Y smaller than 0. Does not make sense." << std::endl;
       return -1;
     }
+    if (globals.X % globals.pX != 0 || globals.Y % globals.pY != 0) {
+      std::cerr << "Invalid subgrid per process configuration. Grid must be perfectly divided into subgrids." << std::endl;
+      return -1;
+    }
+    if (globals.X * globals.Y / globals.pX / globals.pY != size) {
+      std::cerr << "Invalid number of mpi processes spawned. It has to be equal to the number of subgrids which fit into the grid." << std::endl;
+      return -1;
+    }
   } catch (TCLAP::ArgException &e) {
     std::cerr << "Error: " << e.error() << " for arg " << e.argId() << std::endl;
     return -1;
@@ -148,8 +164,8 @@ int main(int argc, char** argv)
   globals.hx = 1. / globals.X;
   globals.hy = 1. / globals.Y;
   
-  Grid<DegreesOfFreedom> degreesOfFreedomGrid(globals.X, globals.Y);
-  Grid<Material> materialGrid(globals.X, globals.Y);
+  Grid<DegreesOfFreedom> degreesOfFreedomGrid(globals.X, globals.Y, globals.pX, globals.pY);
+  Grid<Material> materialGrid(globals.X, globals.Y, globals.pX, globals.pY);
   SourceTerm sourceterm;
   
   switch (scenario) {

@@ -33,12 +33,14 @@ int simulate( GlobalConstants const&  globals,
   std::pair<int, int> ylimits = materialGrid.getYlimits();
   std::pair<int, int> xlimits = materialGrid.getXlimits();
 
-  Grid<DegreesOfFreedom> timeIntegratedGrid(globals.X, globals.Y);
+  Grid<DegreesOfFreedom> timeIntegratedGrid(globals.X, globals.Y, globals.pX, globals.pY);
   
   double time;
   int step = 0;
   for (time = 0.0; time < globals.endTime; time += globals.maxTimestep) {
+//    std::cout << "gathering..." << std::endl;
     degreesOfFreedomGrid.gather();
+//    std::cout << "gathered" << std::endl;
     if (waveFieldWriter)
       waveFieldWriter->writeTimestep(time, degreesOfFreedomGrid);
   
