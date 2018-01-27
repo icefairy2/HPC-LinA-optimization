@@ -33,7 +33,7 @@ public:
   inline int Y() const {
     return m_Y;
   }
-  
+
   inline std::pair<int, int> getYlimits() const;
   inline std::pair<int, int> getXlimits() const;
   void gather(int root = 0);
@@ -60,7 +60,7 @@ Grid<T>::Grid(int X, int Y)
   MPI_Comm_rank(MPI_COMM_WORLD, &mpiRank);
 
   m_Yfrom = m_Y * mpiRank / mpiSize;
-  m_Yto = m_Y * (mpiRank + 1) / mpiSize;
+  m_Yto = mpiRank < mpiSize - 1 ? m_Y * (mpiRank + 1) / mpiSize : m_Y;
   m_Xfrom = 0;
   m_Xto = m_X;
 }
