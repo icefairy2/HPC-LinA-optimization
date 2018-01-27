@@ -1,0 +1,13 @@
+#!/bin/bash
+rm ./build/build_lina/src/*.o
+rm ./build/lina
+ORDER=2
+mpiicc -c -o build/build_lina/src/GEMM.o -Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc src/GEMM.cpp
+mpiicc -c -o build/build_lina/src/GlobalMatrices.o -Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc src/GlobalMatrices.cpp
+mpiicc -c -o build/build_lina/src/InitialCondition.o -Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc src/InitialCondition.cpp
+mpiicc -c -o build/build_lina/src/Kernels.o -Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc src/Kernels.cpp
+mpiicc -c -o build/build_lina/src/Model.o -Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc src/Model.cpp
+mpiicc -c -o build/build_lina/src/Simulator.o -Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc src/Simulator.cpp
+mpiicc -c -o build/build_lina/src/WaveFieldWriter.o -Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc -c $HDF5_INC src/WaveFieldWriter.cpp
+mpiicc -c -o build/build_lina/src/main.o -Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc src/main.cpp
+mpiicc -o build/lina build/build_lina/src/main.o build/build_lina/src/Kernels.o build/build_lina/src/GEMM.o build/build_lina/src/Model.o build/build_lina/src/GlobalMatrices.o build/build_lina/src/Simulator.o build/build_lina/src/WaveFieldWriter.o build/build_lina/src/InitialCondition.o $HDF5_LIB $SZIP_LIB -lz
