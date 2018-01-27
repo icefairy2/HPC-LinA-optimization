@@ -61,9 +61,9 @@ else:
 #
 
 # enforce restrictive C/C++-Code
-env.Append(CFLAGS   = ['-Wall', '-Werror', '-ansi', '-xMIC-AVX512'],
-           CXXFLAGS = ['-Wall', '-Werror', '-ansi', '-xMIC-AVX512'])
-
+env.Append(CFLAGS   = ['-Wall', '-Werror', '-ansi', '-xMIC-AVX512', '-qopenmp'],
+           CXXFLAGS = ['-Wall', '-Werror', '-ansi', '-xMIC-AVX512', '-qopenmp'])
+env.Append(LINKFLAGS = ['-qopenmp'])
 #
 # Compile mode settings
 #
