@@ -115,8 +115,8 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     std::pair<int, int> yLims = degreesOfFreedomGrid.getYlimits();
     std::pair<int, int> xLims = degreesOfFreedomGrid.getXlimits();
 
-    std::cout<<"XMIN: "<<xLims.first<<" XMAX: "<<xLims.second<<std::endl;
-    std::cout<<"YMIN: "<<yLims.first<<" YMAX: "<<yLims.second<<std::endl;
+    int prank = -1;
+    MPI_Comm_rank(MPI_COMM_WORLD, &prank);
 
     for (int y = yLims.first; y < yLims.second; ++y) {
       for (int x = xLims.first; x < xLims.second; ++x) {
@@ -130,6 +130,11 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
             unsigned subIndex = ysub * m_pointsPerDim + xsub;
             // We offset it here
             unsigned targetIndex = ((y-yLims.first)*m_pointsPerDim+ysub)*m_pointsPerDim*m_pDimX + ((x-xLims.first)*m_pointsPerDim+xsub);
+            unsigned targetIndex1 = (y*m_pointsPerDim+ysub)*m_pointsPerDim*degreesOfFreedomGrid.X() + (x*m_pointsPerDim+xsub);
+            if (prank ==0) {
+                std::cout<<"targetIndex: "<<targetIndex<<" targetIndexOld: "<<targetIndex1<<std::endl;
+            }
+            
             m_pressure[targetIndex] = m_subsamples[0 * subGridSize + subIndex];
             m_uvel[targetIndex] = m_subsamples[1 * subGridSize + subIndex];
             m_vvel[targetIndex] = m_subsamples[2 * subGridSize + subIndex];
@@ -149,6 +154,7 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
      */
     plist_id = H5Pcreate(H5P_FILE_ACCESS);
     H5Pset_fapl_mpio(plist_id, MPI_COMM_WORLD, MPI_INFO_NULL);
+
     /*
      * Create a new file collectively and release property list identifier.
      */
@@ -161,7 +167,7 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     chunk_dims[0] = m_pDimY;
     chunk_dims[1] = m_pDimX;
     count[0] = 1;
-    count[1] = 2;
+    count[1] = 1;
     block[0] = chunk_dims[0];
     block[1] = chunk_dims[1];
     offset[0] = yLims.first;
@@ -203,20 +209,20 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     plist_id = H5Pcreate(H5P_DATASET_XFER);
     H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE);
     status = H5Dwrite(dataset_u_id, H5T_NATIVE_FLOAT, memspace, filespace, plist_id, m_uvel);
-    // Close stuff
+    /* Close stuff */
     H5Sclose(filespace);
     H5Pclose(plist_id);
     H5Dclose(dataset_u_id);
 
-    // Write vvel Stuff
-    /* Select Hyperslab in file */
+    // // Write vvel Stuff
+    // /* Select Hyperslab in file */
     filespace = H5Dget_space(dataset_v_id);
     status = H5Sselect_hyperslab(filespace, H5S_SELECT_SET, offset, NULL, count, block);
     /* Create property list for collective dataset write */
     plist_id = H5Pcreate(H5P_DATASET_XFER);
     H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE);
     status = H5Dwrite(dataset_v_id, H5T_NATIVE_FLOAT, memspace, filespace, plist_id, m_vvel);
-    // Close stuff
+    /* Close stuff */
     H5Sclose(filespace);
     H5Pclose(plist_id);
     H5Dclose(dataset_v_id);

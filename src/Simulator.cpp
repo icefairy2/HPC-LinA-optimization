@@ -39,7 +39,7 @@ int simulate( GlobalConstants const&  globals,
   int step = 0;
   for (time = 0.0; time < globals.endTime; time += globals.maxTimestep) {
 //    std::cout << "gathering..." << std::endl;
-    degreesOfFreedomGrid.gather();
+    //degreesOfFreedomGrid.gather();
 //    std::cout << "gathered" << std::endl;
     if (waveFieldWriter)
       waveFieldWriter->writeTimestep(time, degreesOfFreedomGrid);
