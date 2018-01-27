@@ -46,6 +46,7 @@ int simulate( GlobalConstants const&  globals,
   
     double timestep = std::min(globals.maxTimestep, globals.endTime - time);
 
+	#pragma omp parallel for collapse(2)
     for (int y = ylimits.first; y < ylimits.second; ++y) {
       for (int x = xlimits.first; x < xlimits.second; ++x) {
         double Aplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];
@@ -79,7 +80,8 @@ int simulate( GlobalConstants const&  globals,
 
 
     timeIntegratedGrid.gatherGhost();
-
+	
+	#pragma omp parallel for collapse(2)
     for (int y = ylimits.first; y < ylimits.second; ++y) {
       for (int x = xlimits.first; x < xlimits.second; ++x) {
         double Aplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];

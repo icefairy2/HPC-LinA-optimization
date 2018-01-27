@@ -8,6 +8,7 @@
 #include "Grid.h"
 #include "InitialCondition.h"
 #include "tclap/ValueArg.h"
+#include "Stopwatch.h"
 
 void initScenario0(GlobalConstants& globals, Grid<Material>& materialGrid, Grid<DegreesOfFreedom>& degreesOfFreedomGrid)
 {    
@@ -191,6 +192,10 @@ int main(int argc, char** argv)
   if (rank == 0)
     waveFieldWriter = new WaveFieldWriter(wfwBasename, globals, wfwInterval, static_cast<int>(ceil( sqrt(NUMBER_OF_BASIS_FUNCTIONS) )));
 
+  Stopwatch stopwatch;
+  if (rank == 0)
+  stopwatch.start();
+
   int steps = simulate(globals, materialGrid, degreesOfFreedomGrid, waveFieldWriter, sourceterm);
 
   if (rank == 0) {
@@ -205,6 +210,12 @@ int main(int argc, char** argv)
 
     std::cout << "Total number of timesteps: " << steps << std::endl;
   }
+
+  if (rank == 0) {
+	double time = stopwatch.stop();
+	printf("Time: %lf s\n", time);
+  }
+
 
   delete waveFieldWriter;
   MPI_Finalize();
