@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cmath>
 #include "GeneratedGemm.h"
+#include "constants.h"
 
 void DGEMM_old(unsigned M, 
 	unsigned N, 
@@ -57,84 +58,227 @@ void DGEMM(unsigned M_,
 	double beta,
 	double* C, 
 	unsigned ldc) {
-
-	//std::cout << "M: " << M_ << " N: " << N_ << " K: " << K_ << std::endl;
-	//std::cout << "lda: " << lda << " ldb: " << ldb << " ldc: " << ldc << std::endl;
 	
-	if (M_ == 3 && N_ == 3 && K_ == 3 && alpha == 1 && beta == 0) {
-		//std::cout << "execute generated" << std::endl;
-		knlm3n3k3a1b0(A,B,C);
+	// if switches call LIBXSMM generated kernels for all possible matrices with alpha=1 and beta=0
+	if (M_ == 3 && N_ == 3 && K_ == 3 && alpha == 1 && beta == 0 && lda == 3 && ldb == 3 && ldc == 3) {		
+		DGEMMm3n3k3a1b0(A,B,C);
+	}
+	else if (M_ == 6 && N_ == 3 && K_ == 6 && alpha == 1 && beta == 0 && lda == 6 && ldb == 6 && ldc == 6) {
+		DGEMMm6n3k6a1b0(A,B,C);
+	}
+	else if (M_ == 10 && N_ == 3 && K_ == 10 && alpha == 1 && beta == 0 && lda == 10 && ldb == 10 && ldc == 10) {
+		DGEMMm10n3k10a1b0(A,B,C);
+	}
+	else if (M_ == 15 && N_ == 3 && K_ == 15 && alpha == 1 && beta == 0 && lda == 15 && ldb == 15 && ldc == 15) {
+		DGEMMm15n3k15a1b0(A,B,C);
+	}
+	else if (M_ == 21 && N_ == 3 && K_ == 21 && alpha == 1 && beta == 0 && lda == 21 && ldb == 21 && ldc == 21) {
+		DGEMMm21n3k21a1b0(A,B,C);
+	}
+	else if (M_ == 28 && N_ == 3 && K_ == 28 && alpha == 1 && beta == 0 && lda == 28 && ldb == 28 && ldc == 28) {
+		DGEMMm28n3k28a1b0(A,B,C);
+	}
+	else if (M_ == 36 && N_ == 3 && K_ == 36 && alpha == 1 && beta == 0 && lda == 36 && ldb == 36 && ldc == 36) {
+		DGEMMm36n3k36a1b0(A,B,C);
+	}
+	else if (M_ == 45 && N_ == 3 && K_ == 45 && alpha == 1 && beta == 0 && lda == 45 && ldb == 45 && ldc == 45) {
+		DGEMMm45n3k45a1b0(A,B,C);
+	}
+	else if (M_ == 55 && N_ == 3 && K_ == 55 && alpha == 1 && beta == 0 && lda == 55 && ldb == 55 && ldc == 55) {
+		DGEMMm55n3k55a1b0(A,B,C);
+	}
+	else if (M_ == 66 && N_ == 3 && K_ == 66 && alpha == 1 && beta == 0 && lda == 66 && ldb == 66 && ldc == 66) {
+		DGEMMm66n3k66a1b0(A,B,C);
+	}
+	else if (M_ == 78 && N_ == 3 && K_ == 78 && alpha == 1 && beta == 0 && lda == 78 && ldb == 78 && ldc == 78) {
+		DGEMMm78n3k78a1b0(A,B,C);
+	}
+	else if (M_ == 4 && N_ == 3 && K_ == 3 && alpha == 1 && beta == 0 && lda == 4 && ldb == 3 && ldc == 4) {
+		DGEMMm4n3k3a1b0(A,B,C);
+	}
+	else if (M_ == 9 && N_ == 3 && K_ == 6 && alpha == 1 && beta == 0 && lda == 9 && ldb == 6 && ldc == 9) {
+		DGEMMm9n3k6a1b0(A,B,C);
+	}
+	else if (M_ == 16 && N_ == 3 && K_ == 10 && alpha == 1 && beta == 0 && lda == 16 && ldb == 10 && ldc == 16) {
+		DGEMMm16n3k10a1b0(A,B,C);
+	}
+	else if (M_ == 16 && N_ == 3 && K_ == 15 && alpha == 1 && beta == 0 && lda == 16 && ldb == 15 && ldc == 16) {
+		DGEMMm16n3k15a1b0(A,B,C);
+	}
+	else if (M_ == 25 && N_ == 3 && K_ == 21 && alpha == 1 && beta == 0 && lda == 25 && ldb == 21 && ldc == 25) {
+		DGEMMm25n3k21a1b0(A,B,C);
+	}
+	else if (M_ == 36 && N_ == 3 && K_ == 28 && alpha == 1 && beta == 0 && lda == 36 && ldb == 28 && ldc == 36) {
+		DGEMMm36n3k28a1b0(A,B,C);
+	}
+	else if (M_ == 49 && N_ == 3 && K_ == 45 && alpha == 1 && beta == 0 && lda == 49 && ldb == 45 && ldc == 49) {
+		DGEMMm49n3k45a1b0(A,B,C);
+	}
+	else if (M_ == 64 && N_ == 3 && K_ == 55 && alpha == 1 && beta == 0 && lda == 64 && ldb == 55 && ldc == 64) {
+		DGEMMm64n3k55a1b0(A,B,C);
+	}
+	else if (M_ == 81 && N_ == 3 && K_ == 66 && alpha == 1 && beta == 0 && lda == 81 && ldb == 66 && ldc == 81) {
+		DGEMMm81n3k66a1b0(A,B,C);
+	}
+	else if (M_ == 81 && N_ == 3 && K_ == 78 && alpha == 1 && beta == 0 && lda == 81 && ldb == 78 && ldc == 81) {
+		DGEMMm6n3k6a1b0(A,B,C);
 	}
 	else {
-		DGEMM_old(M_, N_, K_, alpha, A, lda, B, ldb, beta, C, ldc);
-	}
-	//DGEMM_old(M_, N_, K_, alpha, A, lda, B, ldb, beta, C, ldc);
-	
-	//if (M_ > 8 && N_ > 8 && K_ > 8) {
-	//	std::cout << "larger than 8" << std::endl;
-	//}
-	
-	//if (M_ < 8 || N_ < 8 || K_ < 8) {
-	//	DGEMM_old(M_, N_, K_, alpha, A, lda, B, ldb, beta, C, ldc);
-	//}
-	//else {
-	/*
-	double A_tmp[512];
-	double B_tmp[512];
-	double C_tmp1[512];
-	double C_tmp2[512];
-
-	for (int i = 0; i < K_*M_; i++) {
-		A_tmp[i] = A[i];
-	}
-	for (int i = 0; i < K_*N_; i++) {
-		B_tmp[i] = B[i];
-	}
-	for (int i = 0; i < N_*M_; i++) {
-		C_tmp1[i] = C[i];
-		C_tmp2[i] = C[i];
-	}*/
-	//std::cout << "temp setup" << std::endl;
-	
-	//const __m512d alpha_v = _mm512_set1_pd(alpha);
-	//const __m512d beta_v = _mm512_set1_pd(beta);
-	
-	/*
-	for (int n = 0; n < N_; n+=8) {
-		for (int m = 0; m < M_; m+=8) {
-		  inner512_8x8(K_, &A(m,0,lda), lda, &B(0,n,ldb),ldb ,&C(m,n,ldc), ldc, alpha_v, beta_v);
+		//DGEMM_old(M_, N_, K_, alpha, A, lda, B, ldb, beta, C, ldc);
+		
+		/**
+		* creates larger buffers for DGEMM calls with alpha different from 1 or -1
+		* all these matrixes have sizes A: NUMBER_OF_BASIS_FUNCTIONS B: NUMBER_OF_QUANTITIES C: NUMBER_OF_QUANTITIES
+		* so B is always 3*3 and the largest possible matrix is 78x3
+		* M and N have to be multiples of 8 because of 512 vectorisation
+		* K is unrolled by 4 in the microkernel so it has to be a multiple of 4
+		* 320 and 32 are the maximum needed sizes (order 12)
+		* */
+		
+		const __m512d alpha_v = _mm512_set1_pd(alpha);
+		const __m512d beta_v = _mm512_set1_pd(beta);
+		
+		int ac_ld = ceil((double)NUMBER_OF_BASIS_FUNCTIONS/8.0)*8;
+		int ac_size = ac_ld*4;
+		
+		double A_tmp[ac_size];
+		double B_tmp[32];
+		double C_tmp[ac_size];
+		
+		#pragma vector always
+		for (int i = 0; i < ac_size; i++) 
+		{
+			A_tmp[i] = 0;
+			C_tmp[i] = 0;
 		}
-	}*/
-	//}
-
-	/*
-	for (int n = 0; n < N_; n+=8) {
-		for (int m = 0; m < M_; m+=8) {
-		  inner512_8x8(K_, &A_tmp(m,0,lda), lda, &B_tmp(0,n,ldb),ldb ,&C_tmp1(m,n,ldc), ldc, alpha_v, beta_v);
+		#pragma vector always
+		for (int i = 0; i < 32; i++)
+		{
+			B_tmp[i] = 0;
 		}
-	}*/
-	
-	/*int errors = 0;
-	for (int i = 0; i < N_*M_; i++) {
-		if (std::abs(C_tmp2[i] - C_tmp1[i]) > 1e-8) {
-			errors++;
-			std::cout << "tmp1: " << C_tmp1[i] << " tmp2: " << C_tmp2[i] << std::endl;
+		
+		int lda_new = ac_ld;
+		int ldb_new = 4;
+		int ldc_new = ac_ld;
+		
+		for (int j=0; j < K_; j++)
+		{
+			for (int i = 0; i < lda; i++) 
+			{
+				A_tmp[j*lda_new+i] = A[j*lda + i];
+			}
 		}
-			
+		for (int j=0; j < N_; j++)
+		{
+			for (int i = 0; i < ldb; i++) 
+			{
+				B_tmp[j*ldb_new+i] = B[j*ldb + i];
+			}
+		}
+		for (int j=0; j < N_; j++)
+		{
+			for (int i = 0; i < ldc; i++) 
+			{
+				C_tmp[j*ldc_new+i] = C[j*ldc + i];
+			}
+		}
+		
+		for (int n = 0; n < N_; n+=8) {
+			for (int m = 0; m < M_; m+=8) {
+			  inner512_8x8(K_, &A_tmp(m,0,lda), lda_new, &B_tmp(0,n,ldb),ldb_new ,&C_tmp(m,n,ldc), ldc_new, alpha_v, beta_v);
+			}
+		}
+		
+		for (int j=0; j < N_; j++)
+		{
+			for (int i = 0; i < ldc; i++) 
+			{
+				C[j*ldc+i] = C_tmp[j*ldc_new + i];
+			}
+		}
 	}
-	if (errors > 0)
-	std::cout << "errors: " << errors << std::endl;*/
-	//std::cout << "calc" << std::endl;
-	/*
-	for (int i = 0; i < N_*M_; i++) {
-		//std::cout << "i: " << i << std::endl;
-		//std::cout << "C_tmp[i] " << C_tmp[i] << std::endl;
-		//std::cout << "C[i] " << C[i] << std::endl;
-		C[i] = C_tmp1[i];
-		//std::cout << "C[i] new" << C[i] << std::endl;
-	}*/
 	
-	//std::cout << "write back" << std::endl;
+	
+	// put everything in buffers of 8x8 multiples, twice as slow as completely unoptimized code, so the idea was aborted
+	/*
+		int M_new = ceil((double) M_/8.0)*8;
+		int N_new = ceil((double)N_/8.0)*8;
+		int K_new = ceil((double)K_/8.0)*8;
+	
+		//std::cout << "M_: " << M_ << " M_new: " << M_new << std::endl;
+		//std::cout << "N_: " << M_ << " N_new: " << M_new << std::endl;
+		//std::cout << "K_: " << M_ << " K_new: " << M_new << std::endl;
+		
+		//double ceilv = ceil((double) M_/8.0);
+		
+		//std::cout << "ceil(M_/8): " << ceilv << std::endl;
+	
+		const __m512d alpha_v = _mm512_set1_pd(alpha);
+		const __m512d beta_v = _mm512_set1_pd(beta);
+		
+		int A_size = M_new*K_new;
+		int B_size = K_new*N_new;
+		int C_size = M_new*N_new;
+		
+		double A_tmp[A_size];
+		double B_tmp[B_size];
+		double C_tmp[C_size];
+		
+		#pragma vector always
+		for (int i = 0; i < A_size; i++) 
+		{
+			A_tmp[i] = 0;
+		}
+		#pragma vector always
+		for (int i = 0; i < B_size; i++)
+		{
+			B_tmp[i] = 0;
+		}
+		#pragma vector always
+		for (int i = 0; i < C_size; i++)
+		{
+			C_tmp[i] = 0;
+		}
+		
+		int lda_new = M_new;
+		int ldb_new = K_new;
+		int ldc_new = M_new;
+		
+		for (int j=0; j < K_; j++)
+		{
+			for (int i = 0; i < M_; i++) 
+			{
+				A_tmp[j*lda_new+i] = A[j*lda + i];
+			}
+		}
+		for (int j=0; j < N_; j++)
+		{
+			for (int i = 0; i < K_; i++) 
+			{
+				B_tmp[j*ldb_new+i] = B[j*ldb + i];
+			}
+		}
+		for (int j=0; j < N_; j++)
+		{
+			for (int i = 0; i < M_; i++) 
+			{
+				C_tmp[j*ldc_new+i] = C[j*ldc + i];
+			}
+		}
+		
+		for (int n = 0; n < N_; n+=8) {
+			for (int m = 0; m < M_; m+=8) {
+			  inner512_8x8(K_, &A_tmp(m,0,lda), lda_new, &B_tmp(0,n,ldb),ldb_new ,&C_tmp(m,n,ldc), ldc_new, alpha_v, beta_v);
+			}
+		}
+		
+		for (int j=0; j < N_; j++)
+		{
+			for (int i = 0; i < M_; i++) 
+			{
+				C[j*ldc+i] = C_tmp[j*ldc_new + i];
+			}
+		}*/
 }
 
 

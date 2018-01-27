@@ -105,7 +105,7 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
             << "        </Attribute>" << std::endl
             << "      </Grid>" << std::endl;
 
-    unsigned subGridSize = m_pointsPerDim * m_pointsPerDim;
+    unsigned subGridSize = m_pointsPerDim * m_pointsPerDim; 
     for (int y = 0; y < degreesOfFreedomGrid.Y(); ++y) {
       for (int x = 0; x < degreesOfFreedomGrid.X(); ++x) {
         DGEMM(  subGridSize, NUMBER_OF_QUANTITIES, NUMBER_OF_BASIS_FUNCTIONS,
