@@ -38,9 +38,8 @@ int simulate( GlobalConstants const&  globals,
   double time;
   int step = 0;
   for (time = 0.0; time < globals.endTime; time += globals.maxTimestep) {
-//    std::cout << "gathering..." << std::endl;
     degreesOfFreedomGrid.gather();
-//    std::cout << "gathered" << std::endl;
+
     if (waveFieldWriter)
       waveFieldWriter->writeTimestep(time, degreesOfFreedomGrid);
   
@@ -108,7 +107,8 @@ int simulate( GlobalConstants const&  globals,
       }
     }
 
-    if (sourceterm.x >= 0 && sourceterm.x < globals.X && sourceterm.y >= 0 && sourceterm.y < globals.Y) {
+    if (sourceterm.x >= 0 && sourceterm.x < globals.X && sourceterm.y >= 0 && sourceterm.y < globals.Y
+        && degreesOfFreedomGrid.checkCoordsRank(sourceterm.x, sourceterm.y)) {
       double areaInv = 1. / (globals.hx*globals.hy);
       DegreesOfFreedom& degreesOfFreedom = degreesOfFreedomGrid.get(sourceterm.x, sourceterm.y);
       double timeIntegral = (*sourceterm.antiderivative)(time + timestep) - (*sourceterm.antiderivative)(time);

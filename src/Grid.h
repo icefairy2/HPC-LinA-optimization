@@ -36,12 +36,14 @@ public:
 
   inline std::pair<int, int> getYlimits() const;
   inline std::pair<int, int> getXlimits() const;
-  inline std::pair<int, int> rankToCoords(int i) const;
-  inline int coordsToRank(int y, int x) const;
+  bool checkCoordsRank(int x, int y) const;
   void gather(int root = 0);
   void gatherGhost();
 
 private:
+  inline std::pair<int, int> rankToCoords(int i) const;
+  inline int coordsToRank(int y, int x) const;
+
   int m_X, m_Y;
   int m_pX, m_pY;
   T* m_data;
@@ -75,6 +77,11 @@ Grid<T>::Grid(int X, int Y, int pX, int pY)
 template<typename T>
 Grid<T>::~Grid() {
   delete[] m_data;
+}
+
+template <typename T>
+inline bool Grid<T>::checkCoordsRank(int x, int y) const {
+  return coordsToRank(y, x) == mpiRank;
 }
 
 template <typename T>
