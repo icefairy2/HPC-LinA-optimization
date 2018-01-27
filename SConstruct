@@ -46,13 +46,13 @@ if env['order'] == 'none':
 
 # Basic compiler setting
 if env['compiler'] == 'intel':
-    env['CC'] = 'icc'
-    env['CXX'] = 'icpc'
-    env['F90'] = 'ifort'
+    env['CC'] = 'mpiicc'
+    env['CXX'] = 'mpiicpc'
+    env['F90'] = 'mpiifort'
 elif env['compiler'] == 'gcc':
-    env['CC'] = 'gcc'
-    env['CXX'] = 'g++'
-    env['F90'] = 'gfortran'
+    env['CC'] = 'mpigcc'
+    env['CXX'] = 'mpig++'
+    env['F90'] = 'mpigfortran'
 else:
     assert(false)
 

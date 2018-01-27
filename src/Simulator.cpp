@@ -34,6 +34,8 @@ int simulate( GlobalConstants const&  globals,
   for (time = 0.0; time < globals.endTime; time += globals.maxTimestep) {
     waveFieldWriter.writeTimestep(time, degreesOfFreedomGrid);
   
+    //std::cout << "start first loop" << std::endl;
+
     double timestep = std::min(globals.maxTimestep, globals.endTime - time);
     for (int y = 0; y < globals.Y; ++y) {
       for (int x = 0; x < globals.X; ++x) {
@@ -44,28 +46,36 @@ int simulate( GlobalConstants const&  globals,
         DegreesOfFreedom& degreesOfFreedom = degreesOfFreedomGrid.get(x, y);
         DegreesOfFreedom& timeIntegrated = timeIntegratedGrid.get(x, y);
         
+	//std::cout << "computeAder, y " << y << " x " << x << std::endl;
         computeAder(timestep, globals, material, degreesOfFreedom, timeIntegrated);
         
+	//std::cout << "computeVolumeIntegral" << std::endl;
         computeVolumeIntegral(globals, material, timeIntegrated, degreesOfFreedom);
 
+	//std::cout << "computeAplus 1" << std::endl;
         computeAplus(material, materialGrid.get(x, y-1), Aplus);
         rotateFluxSolver(0., -1., Aplus, rotatedAplus);
         computeFlux(-globals.hx / (globals.hx * globals.hy), GlobalMatrices::Fxm0, rotatedAplus, timeIntegrated, degreesOfFreedom);
         
+	//std::cout << "computeAplus 2" << std::endl;
         computeAplus(material, materialGrid.get(x, y+1), Aplus);
         rotateFluxSolver(0., 1., Aplus, rotatedAplus);
         computeFlux(-globals.hx / (globals.hx * globals.hy), GlobalMatrices::Fxm1, rotatedAplus, timeIntegrated, degreesOfFreedom);
         
+	//std::cout << "computeAplus 3" << std::endl;
         computeAplus(material, materialGrid.get(x-1, y), Aplus);
         rotateFluxSolver(-1., 0., Aplus, rotatedAplus);
         computeFlux(-globals.hy / (globals.hx * globals.hy), GlobalMatrices::Fym0, rotatedAplus, timeIntegrated, degreesOfFreedom);
         
+	//std::cout << "computeAplus 4" << std::endl;
         computeAplus(material, materialGrid.get(x+1, y), Aplus);
         rotateFluxSolver(1., 0., Aplus, rotatedAplus);
         computeFlux(-globals.hy / (globals.hx * globals.hy), GlobalMatrices::Fym1, rotatedAplus, timeIntegrated, degreesOfFreedom);
       }
     }
-    
+        //std::cout << "end first loop" << std::endl;
+        //std::cout << "start second loop" << std::endl;
+
     for (int y = 0; y < globals.Y; ++y) {
       for (int x = 0; x < globals.X; ++x) {
         double Aplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];
@@ -92,6 +102,8 @@ int simulate( GlobalConstants const&  globals,
       }
     }
     
+       //std::cout << "end second loop" << std::endl;
+
     if (sourceterm.x >= 0 && sourceterm.x < globals.X && sourceterm.y >= 0 && sourceterm.y < globals.Y) {
       double areaInv = 1. / (globals.hx*globals.hy);
       DegreesOfFreedom& degreesOfFreedom = degreesOfFreedomGrid.get(sourceterm.x, sourceterm.y);

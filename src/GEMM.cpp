@@ -5,6 +5,15 @@
 #define B(i,j,ldb) B[ (j)*ldb + (i)]
 #define C(i,j,ldc) C[ (j)*ldc + (i)]
 
+#define A_tmp(i,j,lda) A_tmp[ (j)*lda + (i)]
+#define B_tmp(i,j,ldb) B_tmp[ (j)*ldb + (i)]
+#define C_tmp(i,j,ldc) C_tmp[ (j)*ldc + (i)]
+#define C_tmp1(i,j,ldc) C_tmp1[ (j)*ldc + (i)]
+
+#include <iostream>
+#include <cmath>
+#include "GeneratedGemm.h"
+
 void DGEMM_old(unsigned M, 
 	unsigned N, 
 	unsigned K, 
@@ -49,15 +58,83 @@ void DGEMM(unsigned M_,
 	double* C, 
 	unsigned ldc) {
 
-	const __m512d alpha_v = _mm512_set1_pd(alpha);
-	const __m512d beta_v = _mm512_set1_pd(beta);
+	//std::cout << "M: " << M_ << " N: " << N_ << " K: " << K_ << std::endl;
+	//std::cout << "lda: " << lda << " ldb: " << ldb << " ldc: " << ldc << std::endl;
+	
+	if (M_ == 3 && N_ == 3 && K_ == 3 && alpha == 1 && beta == 0) {
+		//std::cout << "execute generated" << std::endl;
+		knlm3n3k3a1b0(A,B,C);
+	}
+	else {
+		DGEMM_old(M_, N_, K_, alpha, A, lda, B, ldb, beta, C, ldc);
+	}
+	//DGEMM_old(M_, N_, K_, alpha, A, lda, B, ldb, beta, C, ldc);
+	
+	//if (M_ > 8 && N_ > 8 && K_ > 8) {
+	//	std::cout << "larger than 8" << std::endl;
+	//}
+	
+	//if (M_ < 8 || N_ < 8 || K_ < 8) {
+	//	DGEMM_old(M_, N_, K_, alpha, A, lda, B, ldb, beta, C, ldc);
+	//}
+	//else {
+	/*
+	double A_tmp[512];
+	double B_tmp[512];
+	double C_tmp1[512];
+	double C_tmp2[512];
 
+	for (int i = 0; i < K_*M_; i++) {
+		A_tmp[i] = A[i];
+	}
+	for (int i = 0; i < K_*N_; i++) {
+		B_tmp[i] = B[i];
+	}
+	for (int i = 0; i < N_*M_; i++) {
+		C_tmp1[i] = C[i];
+		C_tmp2[i] = C[i];
+	}*/
+	//std::cout << "temp setup" << std::endl;
+	
+	//const __m512d alpha_v = _mm512_set1_pd(alpha);
+	//const __m512d beta_v = _mm512_set1_pd(beta);
+	
+	/*
 	for (int n = 0; n < N_; n+=8) {
 		for (int m = 0; m < M_; m+=8) {
-			/** Kernel call without packing*/
 		  inner512_8x8(K_, &A(m,0,lda), lda, &B(0,n,ldb),ldb ,&C(m,n,ldc), ldc, alpha_v, beta_v);
 		}
+	}*/
+	//}
+
+	/*
+	for (int n = 0; n < N_; n+=8) {
+		for (int m = 0; m < M_; m+=8) {
+		  inner512_8x8(K_, &A_tmp(m,0,lda), lda, &B_tmp(0,n,ldb),ldb ,&C_tmp1(m,n,ldc), ldc, alpha_v, beta_v);
+		}
+	}*/
+	
+	/*int errors = 0;
+	for (int i = 0; i < N_*M_; i++) {
+		if (std::abs(C_tmp2[i] - C_tmp1[i]) > 1e-8) {
+			errors++;
+			std::cout << "tmp1: " << C_tmp1[i] << " tmp2: " << C_tmp2[i] << std::endl;
+		}
+			
 	}
+	if (errors > 0)
+	std::cout << "errors: " << errors << std::endl;*/
+	//std::cout << "calc" << std::endl;
+	/*
+	for (int i = 0; i < N_*M_; i++) {
+		//std::cout << "i: " << i << std::endl;
+		//std::cout << "C_tmp[i] " << C_tmp[i] << std::endl;
+		//std::cout << "C[i] " << C[i] << std::endl;
+		C[i] = C_tmp1[i];
+		//std::cout << "C[i] new" << C[i] << std::endl;
+	}*/
+	
+	//std::cout << "write back" << std::endl;
 }
 
 

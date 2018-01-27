@@ -3,6 +3,7 @@
 #include "constants.h"
 #include "GlobalMatrices.h"
 #include "Model.h"
+#include <iostream>
 
 void computeAder( double                  timestep,
                   GlobalConstants const&  globals,
@@ -24,26 +25,34 @@ void computeAder( double                  timestep,
   
   computeA(material, A);
   computeB(material, B);
-  
+ // std::cout << "computed A and B" << std::endl;
+
   for (unsigned der = 1; der < CONVERGENCE_ORDER; ++der) {  
+    
+   //std::cout << "der = " << der << " CONVERGENCE_ORDER: " << CONVERGENCE_ORDER << std::endl;
+
+    //std::cout << "tmp = Kxi^T * degreesOfFreedom" << std::endl;
     // tmp = Kxi^T * degreesOfFreedom
     DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_BASIS_FUNCTIONS,
             1.0, GlobalMatrices::KxiT, NUMBER_OF_BASIS_FUNCTIONS,
             derivatives[der-1], NUMBER_OF_BASIS_FUNCTIONS,
             0.0, tmp, NUMBER_OF_BASIS_FUNCTIONS );
     
+    //std::cout << "derivatives[der] = -1/hx * tmp * A" << std::endl;
     // derivatives[der] = -1/hx * tmp * A
     DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_QUANTITIES,
             -1.0 / globals.hx, tmp, NUMBER_OF_BASIS_FUNCTIONS,
             A, NUMBER_OF_QUANTITIES,
             1.0, derivatives[der], NUMBER_OF_BASIS_FUNCTIONS );
     
+    //std::cout << "tmp = Keta^T * degreesOfFreedom" << std::endl;
     // tmp = Keta^T * degreesOfFreedom
     DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_BASIS_FUNCTIONS,
             1.0, GlobalMatrices::KetaT, NUMBER_OF_BASIS_FUNCTIONS,
             derivatives[der-1], NUMBER_OF_BASIS_FUNCTIONS,
             0.0, tmp, NUMBER_OF_BASIS_FUNCTIONS );
     
+    //std::cout << "derivatives[der] += -1/hy * tmp * B" << std::endl;
     // derivatives[der] += -1/hy * tmp * B
     DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_QUANTITIES,
             -1.0 / globals.hy, tmp, NUMBER_OF_BASIS_FUNCTIONS,
