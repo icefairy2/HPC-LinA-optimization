@@ -12,10 +12,13 @@
 
 WaveFieldWriter::WaveFieldWriter(std::string const& baseName, GlobalConstants const& globals, double interval, int pointsPerDim)
   : m_step(0), m_interval(interval), m_lastTime(-std::numeric_limits<double>::max()), m_pointsPerDim(pointsPerDim)
-{  
-  if (!baseName.empty()) {
-    m_xdmf.open((baseName + ".xdmf").c_str());
-    m_xdmf  << "<?xml version=\"1.0\" ?>" << std::endl
+{
+    MPI_Comm_rank(MPI_COMM_WORLD, &m_rank);
+    if (!baseName.empty()) {
+        // Only root proccess writest he xdmf
+        if (m_rank == 0) {
+            m_xdmf.open((baseName + ".xdmf").c_str());
+            m_xdmf  << "<?xml version=\"1.0\" ?>" << std::endl
             << "<!DOCTYPE Xdmf SYSTEM \"Xdmf.dtd\">" << std::endl
             << "<Xdmf Version=\"2.0\">" << std::endl
             << "  <Domain>" << std::endl
@@ -25,51 +28,55 @@ WaveFieldWriter::WaveFieldWriter(std::string const& baseName, GlobalConstants co
             << "      <DataItem Format=\"XML\" Dimensions=\"2\">" << globals.hy / m_pointsPerDim << " " << globals.hx / m_pointsPerDim << "</DataItem>" << std::endl
             << "    </Geometry>" << std::endl
             << "    <Grid Name=\"TimeSeries\" GridType=\"Collection\" CollectionType=\"Temporal\">" << std::endl;
-
-    // int gridSize = m_pointsPerDim * m_pointsPerDim * globals.X * globals.Y;
-    int gridSize = m_pointsPerDim * m_pointsPerDim * globals.pX * globals.pY;
-    m_pDimX = globals.pX;
-    m_pDimY = globals.pY;
-
-    m_pressure = new float[gridSize];
-    m_uvel = new float[gridSize];
-    m_vvel = new float[gridSize];
-    
-    std::size_t lastFound = 0;
-    std::size_t found;
-    while ((found = baseName.find("/", lastFound+1)) != std::string::npos) {
-      lastFound = found;
-    }
-    if (lastFound > 0) {
-      ++lastFound;
-    }
-    m_dirName = baseName.substr(0, lastFound);
-    m_baseName = baseName.substr(lastFound);
-    
-    unsigned subGridSize = m_pointsPerDim * m_pointsPerDim;
-    m_subsampleMatrix = new double[subGridSize * NUMBER_OF_BASIS_FUNCTIONS];
-    double subGridSpacing = 1.0 / (m_pointsPerDim + 1);
-    for (int bf = 0; bf < NUMBER_OF_BASIS_FUNCTIONS; ++bf) {
-      for (int y = 0; y < m_pointsPerDim; ++y) {
-        for (int x = 0; x < m_pointsPerDim; ++x) {
-          double xi = (x+1) * subGridSpacing;
-          double eta = (y+1) * subGridSpacing;
-          m_subsampleMatrix[bf * subGridSize + (y * m_pointsPerDim + x)] = (*basisFunctions[bf])(xi, eta);
         }
-      }
+
+        // int gridSize = m_pointsPerDim * m_pointsPerDim * globals.X * globals.Y;
+        int gridSize = m_pointsPerDim * m_pointsPerDim * globals.pX * globals.pY;
+        m_pDimX = globals.pX;
+        m_pDimY = globals.pY;
+
+        m_pressure = new float[gridSize];
+        m_uvel = new float[gridSize];
+        m_vvel = new float[gridSize];
+        
+        std::size_t lastFound = 0;
+        std::size_t found;
+        while ((found = baseName.find("/", lastFound+1)) != std::string::npos) {
+          lastFound = found;
+        }
+        if (lastFound > 0) {
+          ++lastFound;
+        }
+        m_dirName = baseName.substr(0, lastFound);
+        m_baseName = baseName.substr(lastFound);
+        
+        unsigned subGridSize = m_pointsPerDim * m_pointsPerDim;
+        m_subsampleMatrix = new double[subGridSize * NUMBER_OF_BASIS_FUNCTIONS];
+        double subGridSpacing = 1.0 / (m_pointsPerDim + 1);
+        for (int bf = 0; bf < NUMBER_OF_BASIS_FUNCTIONS; ++bf) {
+          for (int y = 0; y < m_pointsPerDim; ++y) {
+            for (int x = 0; x < m_pointsPerDim; ++x) {
+              double xi = (x+1) * subGridSpacing;
+              double eta = (y+1) * subGridSpacing;
+              m_subsampleMatrix[bf * subGridSize + (y * m_pointsPerDim + x)] = (*basisFunctions[bf])(xi, eta);
+            }
+          }
+        }
+        m_subsamples = new double[subGridSize * NUMBER_OF_QUANTITIES];
+        memset(m_subsamples, 0, subGridSize * NUMBER_OF_QUANTITIES * sizeof(double));
     }
-    m_subsamples = new double[subGridSize * NUMBER_OF_QUANTITIES];
-    memset(m_subsamples, 0, subGridSize * NUMBER_OF_QUANTITIES * sizeof(double));
-  }
 }
 
 WaveFieldWriter::~WaveFieldWriter()
 {
   if (!m_baseName.empty()) {
-    m_xdmf  << "    </Grid>" << std::endl
-            << "  </Domain>" << std::endl
-            << "</Xdmf>" << std::endl;
-    m_xdmf.close();
+    if (m_rank == 0) {
+        m_xdmf  << "    </Grid>" << std::endl
+                << "  </Domain>" << std::endl
+                << "</Xdmf>" << std::endl;
+        m_xdmf.close();
+    }
+    
 
     delete[] m_subsamples;
     delete[] m_subsampleMatrix;
@@ -90,26 +97,28 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     vvelFileName << m_baseName << "_v" << m_step << ".bin";
     hdf5FileName << m_baseName << "_" << m_step << ".h5";
     
-    m_xdmf  << "      <Grid Name=\"step_" << m_step << "\" GridType=\"Uniform\">" << std::setw(0) << std::endl
-            << "        <Topology Reference=\"/Xdmf/Domain/Topology[1]\"/>" << std::endl
-            << "        <Geometry Reference=\"/Xdmf/Domain/Geometry[1]\"/>" << std::endl
-            << "        <Time Value=\"" << time << "\"/>" << std::endl
-            << "        <Attribute Name=\"pressure\" Center=\"Node\">" << std::endl
-            << "          <DataItem Format=\"HDF\" DataType=\"Float\" Precision=\"4\" Dimensions=\"" << m_pointsPerDim * degreesOfFreedomGrid.Y() << " " << m_pointsPerDim * degreesOfFreedomGrid.X() << "\">" << std::endl
-            << "            " << hdf5FileName.str() << ":/pressure"<< std::endl
-            << "          </DataItem>" << std::endl
-            << "        </Attribute>" << std::endl
-            << "        <Attribute Name=\"u\" Center=\"Node\">" << std::endl
-            << "          <DataItem Format=\"HDF\" DataType=\"Float\" Precision=\"4\" Dimensions=\"" << m_pointsPerDim * degreesOfFreedomGrid.Y() << " " << m_pointsPerDim * degreesOfFreedomGrid.X() << "\">" << std::endl
-            << "            " << hdf5FileName.str() << ":/u" << std::endl
-            << "          </DataItem>" << std::endl
-            << "       </Attribute>" << std::endl
-            << "        <Attribute Name=\"v\" Center=\"Node\">" << std::endl
-            << "          <DataItem Format=\"HDF\" DataType=\"Float\" Precision=\"4\" Dimensions=\"" << m_pointsPerDim * degreesOfFreedomGrid.Y() << " " << m_pointsPerDim * degreesOfFreedomGrid.X() << "\">" << std::endl
-            << "            " << hdf5FileName.str() << ":/v"<< std::endl
-            << "          </DataItem>" << std::endl
-            << "        </Attribute>" << std::endl
-            << "      </Grid>" << std::endl;
+    if (m_rank == 0) {
+        m_xdmf  << "      <Grid Name=\"step_" << m_step << "\" GridType=\"Uniform\">" << std::setw(0) << std::endl
+                << "        <Topology Reference=\"/Xdmf/Domain/Topology[1]\"/>" << std::endl
+                << "        <Geometry Reference=\"/Xdmf/Domain/Geometry[1]\"/>" << std::endl
+                << "        <Time Value=\"" << time << "\"/>" << std::endl
+                << "        <Attribute Name=\"pressure\" Center=\"Node\">" << std::endl
+                << "          <DataItem Format=\"HDF\" DataType=\"Float\" Precision=\"4\" Dimensions=\"" << m_pointsPerDim * degreesOfFreedomGrid.Y() << " " << m_pointsPerDim * degreesOfFreedomGrid.X() << "\">" << std::endl
+                << "            " << hdf5FileName.str() << ":/pressure"<< std::endl
+                << "          </DataItem>" << std::endl
+                << "        </Attribute>" << std::endl
+                << "        <Attribute Name=\"u\" Center=\"Node\">" << std::endl
+                << "          <DataItem Format=\"HDF\" DataType=\"Float\" Precision=\"4\" Dimensions=\"" << m_pointsPerDim * degreesOfFreedomGrid.Y() << " " << m_pointsPerDim * degreesOfFreedomGrid.X() << "\">" << std::endl
+                << "            " << hdf5FileName.str() << ":/u" << std::endl
+                << "          </DataItem>" << std::endl
+                << "       </Attribute>" << std::endl
+                << "        <Attribute Name=\"v\" Center=\"Node\">" << std::endl
+                << "          <DataItem Format=\"HDF\" DataType=\"Float\" Precision=\"4\" Dimensions=\"" << m_pointsPerDim * degreesOfFreedomGrid.Y() << " " << m_pointsPerDim * degreesOfFreedomGrid.X() << "\">" << std::endl
+                << "            " << hdf5FileName.str() << ":/v"<< std::endl
+                << "          </DataItem>" << std::endl
+                << "        </Attribute>" << std::endl
+                << "      </Grid>" << std::endl;
+    }
 
     std::pair<int, int> yLims = degreesOfFreedomGrid.getYlimits();
     std::pair<int, int> xLims = degreesOfFreedomGrid.getXlimits();
@@ -139,9 +148,8 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
 
     /* WRITE HDF5 FILES */
     hid_t       file_id, filespace, memspace, plist_id, dataspace_id;  /* identifiers */
-    hid_t       dataset_id, dataset_p_id, dataset_u_id, dataset_v_id;
+    hid_t       dataset_p_id, dataset_u_id, dataset_v_id;
     hsize_t dims[2], chunk_dims[2], offset[2], stride[2], count[2], block[2];
-    herr_t    status;
 
     // Specify dimensions
     dims[0] = m_pointsPerDim * degreesOfFreedomGrid.Y();
@@ -183,11 +191,11 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     // Write Pressure Stuff
     // Select Hyperslab in file 
     filespace = H5Dget_space(dataset_p_id);
-    status = H5Sselect_hyperslab(filespace, H5S_SELECT_SET, offset, NULL, count, block);
+    H5Sselect_hyperslab(filespace, H5S_SELECT_SET, offset, NULL, count, block);
     // Create property list for collective dataset write
     plist_id = H5Pcreate(H5P_DATASET_XFER);
     H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE);
-    status = H5Dwrite(dataset_p_id, H5T_NATIVE_FLOAT, memspace, filespace, plist_id, m_pressure);
+    H5Dwrite(dataset_p_id, H5T_NATIVE_FLOAT, memspace, filespace, plist_id, m_pressure);
     // Close stuff
     H5Sclose(filespace);
     H5Pclose(plist_id);
@@ -196,11 +204,11 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     // Write uvel Stuff
     // Select Hyperslab in file 
     filespace = H5Dget_space(dataset_u_id);
-    status = H5Sselect_hyperslab(filespace, H5S_SELECT_SET, offset, NULL, count, block);
+    H5Sselect_hyperslab(filespace, H5S_SELECT_SET, offset, NULL, count, block);
     // Create property list for collective dataset write
     plist_id = H5Pcreate(H5P_DATASET_XFER);
     H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE);
-    status = H5Dwrite(dataset_u_id, H5T_NATIVE_FLOAT, memspace, filespace, plist_id, m_uvel);
+    H5Dwrite(dataset_u_id, H5T_NATIVE_FLOAT, memspace, filespace, plist_id, m_uvel);
     // Close stuff
     H5Sclose(filespace);
     H5Pclose(plist_id);
@@ -209,11 +217,11 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     // Write vvel Stuff
     // Select Hyperslab in file
     filespace = H5Dget_space(dataset_v_id);
-    status = H5Sselect_hyperslab(filespace, H5S_SELECT_SET, offset, NULL, count, block);
+    H5Sselect_hyperslab(filespace, H5S_SELECT_SET, offset, NULL, count, block);
     // Create property list for collective dataset write
     plist_id = H5Pcreate(H5P_DATASET_XFER);
     H5Pset_dxpl_mpio(plist_id, H5FD_MPIO_COLLECTIVE);
-    status = H5Dwrite(dataset_v_id, H5T_NATIVE_FLOAT, memspace, filespace, plist_id, m_vvel);
+    H5Dwrite(dataset_v_id, H5T_NATIVE_FLOAT, memspace, filespace, plist_id, m_vvel);
     // Close stuff
     H5Sclose(filespace);
     H5Pclose(plist_id);
@@ -225,6 +233,7 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
 
     /////////////////////
     ////// Write HDF5 Single Process ///////
+    hid_t       dataset_id;
     /*// Create file
     file_id = H5Fcreate((m_dirName + hdf5FileName.str()).c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
     // Create a dataspace for the dataset

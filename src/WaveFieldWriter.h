@@ -27,6 +27,7 @@ private:
   int           m_pointsPerDim;
   int           m_pDimX;
   int           m_pDimY;
+  int           m_rank;
 };
 
 
