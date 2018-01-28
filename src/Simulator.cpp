@@ -27,16 +27,23 @@ int simulate( GlobalConstants const&  globals,
               WaveFieldWriter&        waveFieldWriter,
               SourceTerm&             sourceterm  )
 {
-  Grid<DegreesOfFreedom> timeIntegratedGrid(globals.X, globals.Y);
+  int rank;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  std::pair<int, int> ylimits = materialGrid.getYlimits();
+  std::pair<int, int> xlimits = materialGrid.getXlimits();
+
+  Grid<DegreesOfFreedom> timeIntegratedGrid(globals.X, globals.Y, globals.pX, globals.pY);
   
   double time;
   int step = 0;
   for (time = 0.0; time < globals.endTime; time += globals.maxTimestep) {
     waveFieldWriter.writeTimestep(time, degreesOfFreedomGrid);
-  
     double timestep = std::min(globals.maxTimestep, globals.endTime - time);
-    for (int y = 0; y < globals.Y; ++y) {
-      for (int x = 0; x < globals.X; ++x) {
+
+	  #pragma omp parallel for collapse(2)
+    for (int y = ylimits.first; y < ylimits.second; ++y) {
+      for (int x = xlimits.first; x < xlimits.second; ++x) {
         double Aplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];
         double rotatedAplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];
         
@@ -65,9 +72,13 @@ int simulate( GlobalConstants const&  globals,
         computeFlux(-globals.hy / (globals.hx * globals.hy), GlobalMatrices::Fym1, rotatedAplus, timeIntegrated, degreesOfFreedom);
       }
     }
-    
-    for (int y = 0; y < globals.Y; ++y) {
-      for (int x = 0; x < globals.X; ++x) {
+
+
+    timeIntegratedGrid.gatherGhost();
+	
+	  #pragma omp parallel for collapse(2)
+    for (int y = ylimits.first; y < ylimits.second; ++y) {
+      for (int x = xlimits.first; x < xlimits.second; ++x) {
         double Aplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];
         double rotatedAplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];
 
@@ -77,22 +88,23 @@ int simulate( GlobalConstants const&  globals,
         computeAminus(material, materialGrid.get(x, y-1), Aplus);
         rotateFluxSolver(0., -1., Aplus, rotatedAplus);
         computeFlux(-globals.hx / (globals.hx * globals.hy), GlobalMatrices::Fxp0, rotatedAplus, timeIntegratedGrid.get(x, y-1), degreesOfFreedom);
-        
+
         computeAminus(material, materialGrid.get(x, y+1), Aplus);
         rotateFluxSolver(0., 1., Aplus, rotatedAplus);
         computeFlux(-globals.hx / (globals.hx * globals.hy), GlobalMatrices::Fxp1, rotatedAplus, timeIntegratedGrid.get(x, y+1), degreesOfFreedom);
-        
+
         computeAminus(material, materialGrid.get(x-1, y), Aplus);
         rotateFluxSolver(-1., 0., Aplus, rotatedAplus);
         computeFlux(-globals.hy / (globals.hx * globals.hy), GlobalMatrices::Fyp0, rotatedAplus, timeIntegratedGrid.get(x-1, y), degreesOfFreedom);
-        
+
         computeAminus(material, materialGrid.get(x+1, y), Aplus);
         rotateFluxSolver(1., 0., Aplus, rotatedAplus);
         computeFlux(-globals.hy / (globals.hx * globals.hy), GlobalMatrices::Fyp1, rotatedAplus, timeIntegratedGrid.get(x+1, y), degreesOfFreedom);
       }
     }
-    
-    if (sourceterm.x >= 0 && sourceterm.x < globals.X && sourceterm.y >= 0 && sourceterm.y < globals.Y) {
+
+    if (sourceterm.x >= 0 && sourceterm.x < globals.X && sourceterm.y >= 0 && sourceterm.y < globals.Y
+        && degreesOfFreedomGrid.checkCoordsRank(sourceterm.x, sourceterm.y)) {
       double areaInv = 1. / (globals.hx*globals.hy);
       DegreesOfFreedom& degreesOfFreedom = degreesOfFreedomGrid.get(sourceterm.x, sourceterm.y);
       double timeIntegral = (*sourceterm.antiderivative)(time + timestep) - (*sourceterm.antiderivative)(time);
@@ -102,12 +114,13 @@ int simulate( GlobalConstants const&  globals,
     }
     
     ++step;
-    if (step % 100 == 0) {
+    if (rank == 0 && step % 100 == 0) {
       std::cout << "At time / timestep: " << time << " / " << step << std::endl;
     }
   }
-  
+
+  degreesOfFreedomGrid.gather();
   waveFieldWriter.writeTimestep(globals.endTime, degreesOfFreedomGrid, true);
-  
+
   return step;
 }

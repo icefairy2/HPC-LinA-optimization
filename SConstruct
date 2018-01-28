@@ -42,13 +42,13 @@ if env['order'] == 'none':
 
 # Basic compiler setting
 if env['compiler'] == 'intel':
-    env['CC'] = 'icc'
-    env['CXX'] = 'icpc'
-    env['F90'] = 'ifort'
+    env['CC'] = 'mpiicc'
+    env['CXX'] = 'mpiicpc'
+    env['F90'] = 'mpiifort'
 elif env['compiler'] == 'gcc':
-    env['CC'] = 'gcc'
-    env['CXX'] = 'g++'
-    env['F90'] = 'gfortran'
+    env['CC'] = 'mpicc'
+    env['CXX'] = 'mpic++'
+    env['F90'] = 'mpifort'
 else:
     assert(false)
 
@@ -59,6 +59,11 @@ else:
 # enforce restrictive C/C++-Code
 env.Append(CFLAGS   = ['-Wall', '-Werror', '-ansi'],
            CXXFLAGS = ['-Wall', '-Werror', '-ansi'])
+
+# compile for KNL
+env.Append(CFLAGS   = ['-xMIC-AVX512', '-qopenmp'],
+           CXXFLAGS = ['-xMIC-AVX512', '-qopenmp'])
+env.Append(LINKFLAGS = ['-qopenmp'])
 
 #
 # Compile mode settings
