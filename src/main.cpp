@@ -189,7 +189,7 @@ int main(int argc, char** argv)
   globals.maxTimestep = determineTimestep(globals.hx, globals.hy, materialGrid);
   
   WaveFieldWriter* waveFieldWriter = NULL;
-  if (rank == 0)
+  // if (rank == 0)
     waveFieldWriter = new WaveFieldWriter(wfwBasename, globals, wfwInterval, static_cast<int>(ceil( sqrt(NUMBER_OF_BASIS_FUNCTIONS) )));
 
   Stopwatch stopwatch;
