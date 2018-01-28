@@ -24,7 +24,7 @@ double determineTimestep(double hx, double hy, Grid<Material>& materialGrid)
 int simulate( GlobalConstants const&  globals,
               Grid<Material>&         materialGrid,
               Grid<DegreesOfFreedom>& degreesOfFreedomGrid,
-              WaveFieldWriter*        waveFieldWriter,
+              WaveFieldWriter&        waveFieldWriter,
               SourceTerm&             sourceterm  )
 {
   int rank;
@@ -38,14 +38,10 @@ int simulate( GlobalConstants const&  globals,
   double time;
   int step = 0;
   for (time = 0.0; time < globals.endTime; time += globals.maxTimestep) {
-    degreesOfFreedomGrid.gather();
-
-    if (waveFieldWriter)
-      waveFieldWriter->writeTimestep(time, degreesOfFreedomGrid);
-  
+    waveFieldWriter.writeTimestep(time, degreesOfFreedomGrid);
     double timestep = std::min(globals.maxTimestep, globals.endTime - time);
 
-	#pragma omp parallel for collapse(2)
+	  #pragma omp parallel for collapse(2)
     for (int y = ylimits.first; y < ylimits.second; ++y) {
       for (int x = xlimits.first; x < xlimits.second; ++x) {
         double Aplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];
@@ -80,7 +76,7 @@ int simulate( GlobalConstants const&  globals,
 
     timeIntegratedGrid.gatherGhost();
 	
-	#pragma omp parallel for collapse(2)
+	  #pragma omp parallel for collapse(2)
     for (int y = ylimits.first; y < ylimits.second; ++y) {
       for (int x = xlimits.first; x < xlimits.second; ++x) {
         double Aplus[NUMBER_OF_QUANTITIES*NUMBER_OF_QUANTITIES];
@@ -124,8 +120,7 @@ int simulate( GlobalConstants const&  globals,
   }
 
   degreesOfFreedomGrid.gather();
-  if (waveFieldWriter)
-    waveFieldWriter->writeTimestep(globals.endTime, degreesOfFreedomGrid, true);
+  waveFieldWriter.writeTimestep(globals.endTime, degreesOfFreedomGrid, true);
 
   return step;
 }
