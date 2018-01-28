@@ -230,41 +230,6 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     // Close/release resources.
     H5Sclose(memspace);
     H5Fclose(file_id);
-
-    /////////////////////
-    ////// Write HDF5 Single Process ///////
-    hid_t       dataset_id;
-    /*// Create file
-    file_id = H5Fcreate((m_dirName + hdf5FileName.str()).c_str(), H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
-    // Create a dataspace for the dataset
-    dataspace_id = H5Screate_simple(2, dims, NULL);
-    // Create dataset for Pressure
-    dataset_id = H5Dcreate(file_id, "/pressure", H5T_NATIVE_FLOAT, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-    status = H5Dwrite(dataset_id, H5T_NATIVE_FLOAT, H5S_ALL, H5S_ALL, H5P_DEFAULT, m_pressure);
-    // Create dataset for uvel
-    dataset_id = H5Dcreate(file_id, "/u", H5T_NATIVE_FLOAT, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-    status = H5Dwrite(dataset_id, H5T_NATIVE_FLOAT, H5S_ALL, H5S_ALL, H5P_DEFAULT, m_uvel);
-    // Create dataset for vvel
-    dataset_id = H5Dcreate(file_id, "/v", H5T_NATIVE_FLOAT, dataspace_id, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
-    status = H5Dwrite(dataset_id, H5T_NATIVE_FLOAT, H5S_ALL, H5S_ALL, H5P_DEFAULT, m_vvel);
-    // Cleanup
-    status = H5Sclose(dataspace_id);
-    status = H5Fclose(file_id);*/
-    //////////////////////
-
-    /* END WRITE HDF5 FILES */
-    
-    /*FILE* pressureFile = fopen((m_dirName + pressureFileName.str()).c_str(), "wb");
-    fwrite(m_pressure, sizeof(float), subGridSize*degreesOfFreedomGrid.X()*degreesOfFreedomGrid.Y(), pressureFile);
-    fclose(pressureFile);
-    
-    FILE* uFile = fopen((m_dirName + uvelFileName.str()).c_str(), "wb");
-    fwrite(m_uvel, sizeof(float), subGridSize*degreesOfFreedomGrid.X()*degreesOfFreedomGrid.Y(), uFile);
-    fclose(uFile);
-    
-    FILE* vFile = fopen((m_dirName + vvelFileName.str()).c_str(), "wb");
-    fwrite(m_vvel, sizeof(float), subGridSize*degreesOfFreedomGrid.X()*degreesOfFreedomGrid.Y(), vFile);
-    fclose(vFile);*/
     
     ++m_step;
   }
