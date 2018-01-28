@@ -155,9 +155,9 @@ void WaveFieldWriter::writeTimestep(double time, Grid<DegreesOfFreedom>& degrees
     offset[0] = yLims.first * m_pointsPerDim;
     offset[1] = xLims.first * m_pointsPerDim;
 
-    std::cout<<"SizesX: "<<chunk_dims[0]<<", "<<dims[0]<<std::endl;
+    /*std::cout<<"SizesX: "<<chunk_dims[0]<<", "<<dims[0]<<std::endl;
     std::cout<<"SizesY: "<<chunk_dims[1]<<", "<<dims[1]<<std::endl;
-    std::cout<<"OffsetX: "<<offset[0]<<", OffsetY: "<<offset[1]<<std::endl;
+    std::cout<<"OffsetX: "<<offset[0]<<", OffsetY: "<<offset[1]<<std::endl;*/
 
     // Set up file access property list with parallel I/O access
     plist_id = H5Pcreate(H5P_FILE_ACCESS);
