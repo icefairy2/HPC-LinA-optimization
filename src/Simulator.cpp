@@ -38,7 +38,7 @@ int simulate( GlobalConstants const&  globals,
   double time;
   int step = 0;
   for (time = 0.0; time < globals.endTime; time += globals.maxTimestep) {
-    degreesOfFreedomGrid.gather();
+    // degreesOfFreedomGrid.gather();
 
     if (waveFieldWriter)
       waveFieldWriter->writeTimestep(time, degreesOfFreedomGrid);
