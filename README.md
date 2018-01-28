@@ -87,6 +87,41 @@ for (int i = m_Xfrom / m_pX; i < m_Xfrom / m_pX + 2; i++)
   }
 ```
 
+If the wavefield output is not done in parallel, then it shall remain the
+rank 0 process' job to output it. To do this, it needs to gather the
+`degreesOfFreedomGrid` from all other processes at the beginning of each
+time step. The `Grid.h` now provides and implementation for that with the
+`gather` method.
+
+```c++
+void Grid<T>::gather(int root) {
+  if (mpiRank == root) {
+    for (int i = 0; i < mpiSize; i++)
+      if (i != root) {
+        std::pair<int, int> coords = rankToCoords(i);
+        MPI_Recv(&m_data[coords.first * m_X + coords.second], 1, MPI_SUBGRID, i, 0,
+                MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+      }
+  } else {
+    MPI_Send(&m_data[m_Yfrom * m_X + m_Xfrom], 1, MPI_SUBGRID, root, 0,
+             MPI_COMM_WORLD);
+  }
+}
+```
+
+As with the columns, the sub-grids are not stored completely in a
+contiguous memory area and thus we have create the `MPI_SUBGRID` type, defining
+the length of each subgrid row and the memory gap between each consecutive rows.
+
+```c
+MPI_Type_vector(m_pY, m_pX * sizeof(T), m_X * sizeof(T), MPI_BYTE, &MPI_SUBGRID);
+MPI_Type_commit(&MPI_SUBGRID);
+```
+
+The same gather procedure is applied at the end of the `simulate` function
+so that the error output in the main function may have the final computed
+`degreesOfFreedomGrid`.
+
 Testing revealed a speedup proportional to the number of MPI processes.
 
 ### OpenMP
@@ -103,3 +138,13 @@ for (int y = ylimits.first; y < ylimits.second; ++y) {
 
 As the for loops remain unchanged, this approach can be applied on both
 the original and the MPI version.
+
+## Compile and run
+
+To run the implementation, one must:
+- clone the repository on *CooLMUC3*
+- load the hdf5 module: `module load hdf5/mpi/1.8.15`
+- compile: `bash -x compilescript`
+- create a script to run the code with mpi (e.g. it should contain an
+mpirun command as `mpirun -np 2 build/lina -s 0 -x 10 -y 10 -a 10 -b 5 -o output/test`
+.
