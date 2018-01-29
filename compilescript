@@ -1,8 +1,8 @@
 #!/bin/bash
+:"${ORDER:?Need to set ORDER. Value between 1-12}"
 mkdir -p ./build/build_lina/src
 rm ./build/build_lina/src/*.o
 rm ./build/lina
-ORDER=2
 CXXFLAGS="-Wall -Werror -ansi -O3 -DNDEBUG -DCONVERGENCE_ORDER=$ORDER -Isrc -xMIC-AVX512 -qopenmp"
 mpiicc -c -o build/build_lina/src/GEMM.o $CXXFLAGS  src/GEMM.cpp
 mpiicc -c -o build/build_lina/src/GlobalMatrices.o $CXXFLAGS src/GlobalMatrices.cpp
