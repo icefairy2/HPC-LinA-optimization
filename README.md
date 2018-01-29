@@ -139,12 +139,38 @@ for (int y = ylimits.first; y < ylimits.second; ++y) {
 As the for loops remain unchanged, this approach can be applied on both
 the original and the MPI version.
 
+
+### Parallel Wavefield Output
+
+When we enable output only the master process can write to the file. This means
+that all information needs to be gathered at the master process leading to
+overhead. In order to strive for a better time we tried to allow for parallel
+writes to a file. For this purpose we use the hdf5 file format which allows
+for writing multiple scientific datasets to the same file. The format functions
+as follows:
+
+* Each dataset is written to a specific path in the file. For example: Pressure
+  goes to filename:/pressure, uvvel goes to filename:/u and so on.
+* Each process writes to a hyperslab governed by the starting and ending indexes
+  (of the Grid) that it is working on.
+
+This process is illustrated in the following figure:
+
+![Hyperslabs per process](https://support.hdfgroup.org/HDF5/Tutor/image/pimg034.gif)
+
+The XDMF format that paraview uses has readers for HDF5 files built in. Hence,
+we only need to point to the correct path for the dataset as illustrated above
+and change the format from 'Binary' to 'HDF'.
+
+After these changes no gather step needs to be done at the master and each
+process is responsible for writing its own wavefield output.
+
 ## Compile and run
 
 To run the implementation, one must:
 - clone the repository on *CooLMUC3*
 - load the hdf5 module: `module load hdf5/mpi/1.8.15`
-- compile: `bash -x compilescript`
+- compile: `export ORDER=2;bash -x compilescript`
 - create a script to run the code with mpi (e.g. it should contain an
 mpirun command as `mpirun -np 2 build/lina -s 0 -x 10 -y 10 -a 10 -b 5 -o output/test`
 .
