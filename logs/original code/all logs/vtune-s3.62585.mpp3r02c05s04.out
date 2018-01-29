@@ -1,0 +1,3 @@
+slurmstepd: error: Unable to create TMPDIR [/gpfs/scratch/t1221/lu26xuk/lu26xuk]: Stale file handle
+slurmstepd: error: Setting TMPDIR to /tmp
+amplxe: Error: There is not enough free disk space available in the `/tmp/amplxe-tmp-lu26xuk/amplxe-res-168960-6718360977088124/data.0' directory. The free disk space is less than 100 MB.

@@ -1,0 +1,7 @@
+At time / timestep: 0.257812 / 100
+L2 error analysis
+=================
+Pressue (p):    0.0838593
+X-Velocity (u): 0.0329006
+Y-Velocity (v): 0.0329006
+Total number of timesteps: 192

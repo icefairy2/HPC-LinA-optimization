@@ -1,0 +1,22 @@
+At time / timestep: 0.0325658 / 100
+At time / timestep: 0.0654605 / 200
+At time / timestep: 0.0983553 / 300
+At time / timestep: 0.13125 / 400
+At time / timestep: 0.164145 / 500
+At time / timestep: 0.197039 / 600
+At time / timestep: 0.229934 / 700
+At time / timestep: 0.262829 / 800
+At time / timestep: 0.295724 / 900
+At time / timestep: 0.328618 / 1000
+At time / timestep: 0.361513 / 1100
+At time / timestep: 0.394408 / 1200
+At time / timestep: 0.427303 / 1300
+At time / timestep: 0.460197 / 1400
+At time / timestep: 0.493092 / 1500
+L2 error analysis
+=================
+Pressue (p):    1.10809e-12
+X-Velocity (u): 5.97799e-12
+Y-Velocity (v): 5.95077e-12
+Total number of timesteps: 1521
+Time: 425989847.975000 us

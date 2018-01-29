@@ -1,0 +1,5 @@
+At time / timestep: 0.0009211 / 100
+At time / timestep: 0.0018515 / 200
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 79781.0 ON mpp3r02c02s07 CANCELLED AT 2018-01-28T03:40:16 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 79781 ON mpp3r02c02s07 CANCELLED AT 2018-01-28T03:40:16 DUE TO TIME LIMIT ***

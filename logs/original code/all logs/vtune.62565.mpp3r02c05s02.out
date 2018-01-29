@@ -1,0 +1,12 @@
+PARSE ERROR: Argument: y
+             Couldn't find match for argument
+
+Brief USAGE: 
+srun: error: mpp3r02c05s02: task 0: Exited with exit code 1
+   /home/hpc/t1221/lu26xuk/LinA/build/./lina  [-t <double>] [-i <double>]
+                                        [-o <string>] -y <int> -x <int> -s
+                                        <int> [--] [--version] [-h]
+
+For complete USAGE and HELP type: 
+   /home/hpc/t1221/lu26xuk/LinA/build/./lina --help
+

@@ -1,0 +1,7 @@
+At time / timestep: 0.0703125 / 100
+At time / timestep: 0.141335 / 200
+At time / timestep: 0.212358 / 300
+At time / timestep: 0.283381 / 400
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 74148.0 ON mpp3r01c05s07 CANCELLED AT 2018-01-25T15:57:31 ***
+slurmstepd: error: *** JOB 74148 ON mpp3r01c05s07 CANCELLED AT 2018-01-25T15:57:31 ***

@@ -1,0 +1,7 @@
+amplxe: Collection started. To stop the collection, either press CTRL-C or enter from another console window: amplxe-cl -r /home/hpc/t1221/lu26xuk/LinA/build/r005hs -command stop.
+At time / timestep: 0.00795495 / 100
+At time / timestep: 0.0159903 / 200
+At time / timestep: 0.0240256 / 300
+At time / timestep: 0.0320609 / 400
+At time / timestep: 0.0400962 / 500
+slurmstepd: error: *** JOB 62627 ON mpp3r03c04s04 CANCELLED AT 2018-01-20T14:33:38 DUE TO TIME LIMIT ***

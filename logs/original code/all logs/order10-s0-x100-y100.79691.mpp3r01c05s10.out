@@ -1,0 +1,23 @@
+At time / timestep: 0.00651316 / 100
+At time / timestep: 0.0130921 / 200
+At time / timestep: 0.0196711 / 300
+At time / timestep: 0.02625 / 400
+At time / timestep: 0.0328289 / 500
+At time / timestep: 0.0394079 / 600
+At time / timestep: 0.0459868 / 700
+At time / timestep: 0.0525658 / 800
+At time / timestep: 0.0591447 / 900
+At time / timestep: 0.0657237 / 1000
+At time / timestep: 0.0723026 / 1100
+At time / timestep: 0.0788816 / 1200
+At time / timestep: 0.0854605 / 1300
+At time / timestep: 0.0920395 / 1400
+At time / timestep: 0.0986184 / 1500
+At time / timestep: 0.105197 / 1600
+At time / timestep: 0.111776 / 1700
+At time / timestep: 0.118355 / 1800
+At time / timestep: 0.124934 / 1900
+At time / timestep: 0.131513 / 2000
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 79691.0 ON mpp3r01c05s10 CANCELLED AT 2018-01-28T02:29:47 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 79691 ON mpp3r01c05s10 CANCELLED AT 2018-01-28T02:29:47 DUE TO TIME LIMIT ***
