@@ -1,0 +1,30 @@
+
+Collection and Platform Info
+----------------------------
+Parameter                 r002hs                                                                                                                                                                              
+------------------------  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Application Command Line  ./lina "-s" "2" "-y" "32" "-x" "32" "-a" "8" "-b" "8"                                                                                                                               
+Operating System          4.4.74-92.35-default NAME="SLES"
+VERSION="12-SP2"
+VERSION_ID="12.2"
+PRETTY_NAME="SUSE Linux Enterprise Server 12 SP2"
+ID="sles"
+ANSI_COLOR="0;32"
+CPE_NAME="cpe:/o:suse:sles:12:sp2"
+Computer Name             mpp3-login8                                                                                                                                                                         
+Result Size               2382005                                                                                                                                                                             
+Collection start time     05:17:04 29/01/2018 UTC                                                                                                                                                             
+Collection stop time      05:17:04 29/01/2018 UTC                                                                                                                                                             
+
+CPU
+---
+Parameter          r002hs                                            
+-----------------  --------------------------------------------------
+Name               Intel(R) Xeon(R) Processor code named Broadwell-EP
+Frequency          1995377505                                        
+Logical CPU Count  56                                                
+
+Summary
+-------
+Elapsed Time:  0.001
+CPU Time:           

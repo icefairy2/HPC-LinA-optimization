@@ -1,0 +1,11 @@
+At time / timestep: 0.0497184 / 100
+At time / timestep: 0.0999391 / 200
+At time / timestep: 0.15016 / 300
+At time / timestep: 0.20038 / 400
+At time / timestep: 0.250601 / 500
+At time / timestep: 0.300822 / 600
+At time / timestep: 0.351042 / 700
+At time / timestep: 0.401263 / 800
+At time / timestep: 0.451484 / 900
+Time: 1.301969 s
+Total number of timesteps: 996

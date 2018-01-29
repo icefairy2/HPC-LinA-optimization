@@ -197,6 +197,11 @@ int main(int argc, char** argv)
   int steps = simulate(globals, materialGrid, degreesOfFreedomGrid, waveFieldWriter, sourceterm);
 
   if (rank == 0) {
+	double time = stopwatch.stop();
+	printf("Time: %lf s\n", time);
+  }
+  
+  if (rank == 0) {
     if (scenario == 0) {
       double l2error[NUMBER_OF_QUANTITIES];
       L2error(globals.endTime, globals, materialGrid, degreesOfFreedomGrid, l2error);
@@ -209,12 +214,6 @@ int main(int argc, char** argv)
     std::cout << "Total number of timesteps: " << steps << std::endl;
   }
 
-  if (rank == 0) {
-	double time = stopwatch.stop();
-	printf("Time: %lf s\n", time);
-  }
-
-  
   MPI_Finalize();
   return 0;
 }
