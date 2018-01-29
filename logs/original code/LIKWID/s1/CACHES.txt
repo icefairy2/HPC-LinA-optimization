@@ -1,0 +1,206 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: CACHES
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.152723 |
+|     call count    |     1    |
++-------------------+----------+
++-----------------------+----------+-------------+
+|         Event         |  Counter |    Core 0   |
++-----------------------+----------+-------------+
+|   INSTR_RETIRED_ANY   |   FIXC0  | 13224220000 |
+| CPU_CLK_UNHALTED_CORE |   FIXC1  |  3628989000 |
+|  CPU_CLK_UNHALTED_REF |   FIXC2  |  2994096000 |
+|    L1D_REPLACEMENT    |   PMC0   |   9166562   |
+|      L1D_M_EVICT      |   PMC1   |   1268145   |
+|    L2_LINES_IN_ALL    |   PMC2   |    137576   |
+|     L2_TRANS_L2_WB    |   PMC3   |    57489    |
+|  LLC_LOOKUP_DATA_READ |  CBOX0C0 |    24882    |
+|  LLC_LOOKUP_DATA_READ |  CBOX1C0 |     3833    |
+|  LLC_LOOKUP_DATA_READ |  CBOX2C0 |    29658    |
+|  LLC_LOOKUP_DATA_READ |  CBOX3C0 |     4166    |
+|  LLC_LOOKUP_DATA_READ |  CBOX4C0 |    25687    |
+|  LLC_LOOKUP_DATA_READ |  CBOX5C0 |    12922    |
+|  LLC_LOOKUP_DATA_READ |  CBOX6C0 |    23735    |
+|  LLC_LOOKUP_DATA_READ |  CBOX7C0 |     3894    |
+|  LLC_LOOKUP_DATA_READ |  CBOX8C0 |    24197    |
+|  LLC_LOOKUP_DATA_READ |  CBOX9C0 |     3563    |
+|  LLC_LOOKUP_DATA_READ | CBOX10C0 |    24939    |
+|  LLC_LOOKUP_DATA_READ | CBOX11C0 |     3342    |
+|  LLC_LOOKUP_DATA_READ | CBOX12C0 |    21054    |
+|  LLC_LOOKUP_DATA_READ | CBOX13C0 |     3593    |
+|  LLC_LOOKUP_DATA_READ | CBOX14C0 |      0      |
+|  LLC_LOOKUP_DATA_READ | CBOX15C0 |      0      |
+|  LLC_LOOKUP_DATA_READ | CBOX16C0 |      0      |
+|  LLC_LOOKUP_DATA_READ | CBOX17C0 |      0      |
+|     LLC_VICTIMS_M     |  CBOX0C1 |     719     |
+|     LLC_VICTIMS_M     |  CBOX1C1 |      2      |
+|     LLC_VICTIMS_M     |  CBOX2C1 |     722     |
+|     LLC_VICTIMS_M     |  CBOX3C1 |      2      |
+|     LLC_VICTIMS_M     |  CBOX4C1 |     735     |
+|     LLC_VICTIMS_M     |  CBOX5C1 |      1      |
+|     LLC_VICTIMS_M     |  CBOX6C1 |     711     |
+|     LLC_VICTIMS_M     |  CBOX7C1 |      0      |
+|     LLC_VICTIMS_M     |  CBOX8C1 |     745     |
+|     LLC_VICTIMS_M     |  CBOX9C1 |      1      |
+|     LLC_VICTIMS_M     | CBOX10C1 |     656     |
+|     LLC_VICTIMS_M     | CBOX11C1 |      2      |
+|     LLC_VICTIMS_M     | CBOX12C1 |     592     |
+|     LLC_VICTIMS_M     | CBOX13C1 |      2      |
+|      CAS_COUNT_RD     |  MBOX0C0 |    35060    |
+|      CAS_COUNT_WR     |  MBOX0C1 |    32561    |
+|      CAS_COUNT_RD     |  MBOX1C0 |     5462    |
+|      CAS_COUNT_WR     |  MBOX1C1 |     3230    |
+|      CAS_COUNT_RD     |  MBOX2C0 |      0      |
+|      CAS_COUNT_WR     |  MBOX2C1 |      0      |
+|      CAS_COUNT_RD     |  MBOX3C0 |      0      |
+|      CAS_COUNT_WR     |  MBOX3C1 |      0      |
+|      CAS_COUNT_RD     |  MBOX4C0 |    30594    |
+|      CAS_COUNT_WR     |  MBOX4C1 |    29743    |
+|      CAS_COUNT_RD     |  MBOX5C0 |     1200    |
+|      CAS_COUNT_WR     |  MBOX5C1 |     374     |
+|      CAS_COUNT_RD     |  MBOX6C0 |      0      |
+|      CAS_COUNT_WR     |  MBOX6C1 |      0      |
+|      CAS_COUNT_RD     |  MBOX7C0 |      0      |
+|      CAS_COUNT_WR     |  MBOX7C1 |      0      |
++-----------------------+----------+-------------+
++----------------------------------------+-----------+
+|                 Metric                 |   Core 0  |
++----------------------------------------+-----------+
+|           Runtime (RDTSC) [s]          |   1.1527  |
+|          Runtime unhalted [s]          |   1.3958  |
+|               Clock [MHz]              | 3151.3160 |
+|                   CPI                  |   0.2744  |
+|   L2 to L1 load bandwidth [MBytes/s]   |  508.9340 |
+|   L2 to L1 load data volume [GBytes]   |   0.5867  |
+|   L1 to L2 evict bandwidth [MBytes/s]  |  70.4083  |
+|   L1 to L2 evict data volume [GBytes]  |   0.0812  |
+|   L1 to/from L2 bandwidth [MBytes/s]   |  579.3423 |
+|   L1 to/from L2 data volume [GBytes]   |   0.6678  |
+|   L3 to L2 load bandwidth [MBytes/s]   |   7.6383  |
+|   L3 to L2 load data volume [GBytes]   |   0.0088  |
+|   L2 to L3 evict bandwidth [MBytes/s]  |   3.1918  |
+|   L2 to L3 evict data volume [GBytes]  |   3.6793  |
+|   L2 to/from L3 bandwidth [MBytes/s]   |  10.8301  |
+|   L2 to/from L3 data volume [GBytes]   |   0.0125  |
+|    System to L3 bandwidth [MBytes/s]   |  11.6296  |
+|    System to L3 data volume [GBytes]   |   0.0134  |
+|    L3 to system bandwidth [MBytes/s]   |   0.2715  |
+|    L3 to system data volume [GBytes]   |   0.0003  |
+| L3 to/from system bandwidth [MBytes/s] |  11.9011  |
+| L3 to/from system data volume [GBytes] |   0.0137  |
+|    Memory read bandwidth [MBytes/s]    |   4.0150  |
+|    Memory read data volume [GBytes]    |   0.0046  |
+|    Memory write bandwidth [MBytes/s]   |   3.6593  |
+|    Memory write data volume [GBytes]   |   0.0042  |
+|       Memory bandwidth [MBytes/s]      |   7.6743  |
+|       Memory data volume [GBytes]      |   0.0088  |
++----------------------------------------+-----------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: CACHES
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.008931 |
+|     call count    |     1    |
++-------------------+----------+
++-----------------------+----------+----------+
+|         Event         |  Counter |  Core 0  |
++-----------------------+----------+----------+
+|   INSTR_RETIRED_ANY   |   FIXC0  | 23776610 |
+| CPU_CLK_UNHALTED_CORE |   FIXC1  | 10679320 |
+|  CPU_CLK_UNHALTED_REF |   FIXC2  | 23138670 |
+|    L1D_REPLACEMENT    |   PMC0   |   1844   |
+|      L1D_M_EVICT      |   PMC1   |    887   |
+|    L2_LINES_IN_ALL    |   PMC2   |   2344   |
+|     L2_TRANS_L2_WB    |   PMC3   |    313   |
+|  LLC_LOOKUP_DATA_READ |  CBOX0C0 |    717   |
+|  LLC_LOOKUP_DATA_READ |  CBOX1C0 |     0    |
+|  LLC_LOOKUP_DATA_READ |  CBOX2C0 |   1260   |
+|  LLC_LOOKUP_DATA_READ |  CBOX3C0 |     0    |
+|  LLC_LOOKUP_DATA_READ |  CBOX4C0 |   1219   |
+|  LLC_LOOKUP_DATA_READ |  CBOX5C0 |     0    |
+|  LLC_LOOKUP_DATA_READ |  CBOX6C0 |    791   |
+|  LLC_LOOKUP_DATA_READ |  CBOX7C0 |     0    |
+|  LLC_LOOKUP_DATA_READ |  CBOX8C0 |    759   |
+|  LLC_LOOKUP_DATA_READ |  CBOX9C0 |     0    |
+|  LLC_LOOKUP_DATA_READ | CBOX10C0 |    725   |
+|  LLC_LOOKUP_DATA_READ | CBOX11C0 |     0    |
+|  LLC_LOOKUP_DATA_READ | CBOX12C0 |    663   |
+|  LLC_LOOKUP_DATA_READ | CBOX13C0 |     0    |
+|  LLC_LOOKUP_DATA_READ | CBOX14C0 |     0    |
+|  LLC_LOOKUP_DATA_READ | CBOX15C0 |     0    |
+|  LLC_LOOKUP_DATA_READ | CBOX16C0 |     0    |
+|  LLC_LOOKUP_DATA_READ | CBOX17C0 |     0    |
+|     LLC_VICTIMS_M     |  CBOX0C1 |    41    |
+|     LLC_VICTIMS_M     |  CBOX1C1 |     0    |
+|     LLC_VICTIMS_M     |  CBOX2C1 |    31    |
+|     LLC_VICTIMS_M     |  CBOX3C1 |     0    |
+|     LLC_VICTIMS_M     |  CBOX4C1 |    38    |
+|     LLC_VICTIMS_M     |  CBOX5C1 |     0    |
+|     LLC_VICTIMS_M     |  CBOX6C1 |    39    |
+|     LLC_VICTIMS_M     |  CBOX7C1 |     0    |
+|     LLC_VICTIMS_M     |  CBOX8C1 |    52    |
+|     LLC_VICTIMS_M     |  CBOX9C1 |     0    |
+|     LLC_VICTIMS_M     | CBOX10C1 |    43    |
+|     LLC_VICTIMS_M     | CBOX11C1 |     0    |
+|     LLC_VICTIMS_M     | CBOX12C1 |    38    |
+|     LLC_VICTIMS_M     | CBOX13C1 |     0    |
+|      CAS_COUNT_RD     |  MBOX0C0 |    562   |
+|      CAS_COUNT_WR     |  MBOX0C1 |    423   |
+|      CAS_COUNT_RD     |  MBOX1C0 |    320   |
+|      CAS_COUNT_WR     |  MBOX1C1 |    170   |
+|      CAS_COUNT_RD     |  MBOX2C0 |     0    |
+|      CAS_COUNT_WR     |  MBOX2C1 |     0    |
+|      CAS_COUNT_RD     |  MBOX3C0 |     0    |
+|      CAS_COUNT_WR     |  MBOX3C1 |     0    |
+|      CAS_COUNT_RD     |  MBOX4C0 |    284   |
+|      CAS_COUNT_WR     |  MBOX4C1 |    243   |
+|      CAS_COUNT_RD     |  MBOX5C0 |    51    |
+|      CAS_COUNT_WR     |  MBOX5C1 |    12    |
+|      CAS_COUNT_RD     |  MBOX6C0 |     0    |
+|      CAS_COUNT_WR     |  MBOX6C1 |     0    |
+|      CAS_COUNT_RD     |  MBOX7C0 |     0    |
+|      CAS_COUNT_WR     |  MBOX7C1 |     0    |
++-----------------------+----------+----------+
++----------------------------------------+--------------+
+|                 Metric                 |    Core 0    |
++----------------------------------------+--------------+
+|           Runtime (RDTSC) [s]          |    0.0089    |
+|          Runtime unhalted [s]          |    0.0041    |
+|               Clock [MHz]              |   1199.9889  |
+|                   CPI                  |    0.4492    |
+|   L2 to L1 load bandwidth [MBytes/s]   |    13.2147   |
+|   L2 to L1 load data volume [GBytes]   |    0.0001    |
+|   L1 to L2 evict bandwidth [MBytes/s]  |    6.3565    |
+|   L1 to L2 evict data volume [GBytes]  |    0.0001    |
+|   L1 to/from L2 bandwidth [MBytes/s]   |    19.5712   |
+|   L1 to/from L2 data volume [GBytes]   |    0.0002    |
+|   L3 to L2 load bandwidth [MBytes/s]   |    16.7978   |
+|   L3 to L2 load data volume [GBytes]   |    0.0002    |
+|   L2 to L3 evict bandwidth [MBytes/s]  |    2.2431    |
+|   L2 to L3 evict data volume [GBytes]  |    0.0200    |
+|   L2 to/from L3 bandwidth [MBytes/s]   |    19.0409   |
+|   L2 to/from L3 data volume [GBytes]   |    0.0002    |
+|    System to L3 bandwidth [MBytes/s]   |    43.9581   |
+|    System to L3 data volume [GBytes]   |    0.0004    |
+|    L3 to system bandwidth [MBytes/s]   |    2.0209    |
+|    L3 to system data volume [GBytes]   | 1.804800e-05 |
+| L3 to/from system bandwidth [MBytes/s] |    45.9790   |
+| L3 to/from system data volume [GBytes] |    0.0004    |
+|    Memory read bandwidth [MBytes/s]    |    8.7214    |
+|    Memory read data volume [GBytes]    |    0.0001    |
+|    Memory write bandwidth [MBytes/s]   |    6.0770    |
+|    Memory write data volume [GBytes]   |    0.0001    |
+|       Memory bandwidth [MBytes/s]      |    14.7984   |
+|       Memory data volume [GBytes]      |    0.0001    |
++----------------------------------------+--------------+

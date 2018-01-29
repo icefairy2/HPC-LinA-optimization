@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: TLB_INSTR
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.157767 |
+|     call count    |     1    |
++-------------------+----------+
++---------------------------+---------+-------------+
+|           Event           | Counter |    Core 0   |
++---------------------------+---------+-------------+
+|     INSTR_RETIRED_ANY     |  FIXC0  | 13224310000 |
+|   CPU_CLK_UNHALTED_CORE   |  FIXC1  |  3635657000 |
+|    CPU_CLK_UNHALTED_REF   |  FIXC2  |  3006164000 |
+| ITLB_MISSES_CAUSES_A_WALK |   PMC0  |     435     |
+| ITLB_MISSES_WALK_DURATION |   PMC1  |     9961    |
++---------------------------+---------+-------------+
++-----------------------------+--------------+
+|            Metric           |    Core 0    |
++-----------------------------+--------------+
+|     Runtime (RDTSC) [s]     |    1.1578    |
+|     Runtime unhalted [s]    |    1.3983    |
+|         Clock [MHz]         |   3144.4380  |
+|             CPI             |    0.2749    |
+|        L1 ITLB misses       |      435     |
+|      L1 ITLB miss rate      | 3.289397e-08 |
+| L1 ITLB miss duration [Cyc] |    22.8989   |
++-----------------------------+--------------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: TLB_INSTR
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.000066 |
+|     call count    |     1    |
++-------------------+----------+
++---------------------------+---------+--------+
+|           Event           | Counter | Core 0 |
++---------------------------+---------+--------+
+|     INSTR_RETIRED_ANY     |  FIXC0  |  27639 |
+|   CPU_CLK_UNHALTED_CORE   |  FIXC1  |  61236 |
+|    CPU_CLK_UNHALTED_REF   |  FIXC2  | 132652 |
+| ITLB_MISSES_CAUSES_A_WALK |   PMC0  |   232  |
+| ITLB_MISSES_WALK_DURATION |   PMC1  |  4494  |
++---------------------------+---------+--------+
++-----------------------------+--------------+
+|            Metric           |    Core 0    |
++-----------------------------+--------------+
+|     Runtime (RDTSC) [s]     |    0.0001    |
+|     Runtime unhalted [s]    | 2.355234e-05 |
+|         Clock [MHz]         |   1200.2337  |
+|             CPI             |    2.2156    |
+|        L1 ITLB misses       |      232     |
+|      L1 ITLB miss rate      |    0.0084    |
+| L1 ITLB miss duration [Cyc] |    19.3707   |
++-----------------------------+--------------+

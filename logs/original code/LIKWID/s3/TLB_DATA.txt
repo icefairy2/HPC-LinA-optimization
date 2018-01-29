@@ -1,0 +1,74 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: TLB_DATA
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.158127 |
+|     call count    |     1    |
++-------------------+----------+
++---------------------------------+---------+-------------+
+|              Event              | Counter |    Core 0   |
++---------------------------------+---------+-------------+
+|        INSTR_RETIRED_ANY        |  FIXC0  | 13224310000 |
+|      CPU_CLK_UNHALTED_CORE      |  FIXC1  |  3626493000 |
+|       CPU_CLK_UNHALTED_REF      |  FIXC2  |  3008074000 |
+|  DTLB_LOAD_MISSES_CAUSES_A_WALK |   PMC0  |     324     |
+| DTLB_STORE_MISSES_CAUSES_A_WALK |   PMC1  |      99     |
+|  DTLB_LOAD_MISSES_WALK_DURATION |   PMC2  |     8273    |
+| DTLB_STORE_MISSES_WALK_DURATION |   PMC3  |     1726    |
++---------------------------------+---------+-------------+
++-----------------------------------+--------------+
+|               Metric              |    Core 0    |
++-----------------------------------+--------------+
+|        Runtime (RDTSC) [s]        |    1.1581    |
+|        Runtime unhalted [s]       |    1.3948    |
+|            Clock [MHz]            |   3134.5082  |
+|                CPI                |    0.2742    |
+|        L1 DTLB load misses        |      324     |
+|       L1 DTLB load miss rate      | 2.450033e-08 |
+|  L1 DTLB load miss duration [Cyc] |    25.5340   |
+|        L1 DTLB store misses       |      99      |
+|      L1 DTLB store miss rate      | 7.486213e-09 |
+| L1 DTLB store miss duration [Cyc] |    17.4343   |
++-----------------------------------+--------------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: TLB_DATA
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.000062 |
+|     call count    |     1    |
++-------------------+----------+
++---------------------------------+---------+--------+
+|              Event              | Counter | Core 0 |
++---------------------------------+---------+--------+
+|        INSTR_RETIRED_ANY        |  FIXC0  |  28455 |
+|      CPU_CLK_UNHALTED_CORE      |  FIXC1  |  60569 |
+|       CPU_CLK_UNHALTED_REF      |  FIXC2  | 131170 |
+|  DTLB_LOAD_MISSES_CAUSES_A_WALK |   PMC0  |   175  |
+| DTLB_STORE_MISSES_CAUSES_A_WALK |   PMC1  |    5   |
+|  DTLB_LOAD_MISSES_WALK_DURATION |   PMC2  |  3599  |
+| DTLB_STORE_MISSES_WALK_DURATION |   PMC3  |   182  |
++---------------------------------+---------+--------+
++-----------------------------------+--------------+
+|               Metric              |    Core 0    |
++-----------------------------------+--------------+
+|        Runtime (RDTSC) [s]        |    0.0001    |
+|        Runtime unhalted [s]       | 2.329589e-05 |
+|            Clock [MHz]            |   1200.5686  |
+|                CPI                |    2.1286    |
+|        L1 DTLB load misses        |      175     |
+|       L1 DTLB load miss rate      |    0.0062    |
+|  L1 DTLB load miss duration [Cyc] |    20.5657   |
+|        L1 DTLB store misses       |       5      |
+|      L1 DTLB store miss rate      |    0.0002    |
+| L1 DTLB store miss duration [Cyc] |    36.4000   |
++-----------------------------------+--------------+

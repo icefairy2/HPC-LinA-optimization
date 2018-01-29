@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: L3CACHE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.161634 |
+|     call count    |     1    |
++-------------------+----------+
++-------------------------------+---------+-------------+
+|             Event             | Counter |    Core 0   |
++-------------------------------+---------+-------------+
+|       INSTR_RETIRED_ANY       |  FIXC0  | 13224310000 |
+|     CPU_CLK_UNHALTED_CORE     |  FIXC1  |  3634643000 |
+|      CPU_CLK_UNHALTED_REF     |  FIXC2  |  3017300000 |
+|  MEM_LOAD_UOPS_RETIRED_L3_ALL |   PMC0  |    21216    |
+| MEM_LOAD_UOPS_RETIRED_L3_MISS |   PMC1  |     436     |
+|        UOPS_RETIRED_ALL       |   PMC2  | 14001780000 |
++-------------------------------+---------+-------------+
++----------------------+--------------+
+|        Metric        |    Core 0    |
++----------------------+--------------+
+|  Runtime (RDTSC) [s] |    1.1616    |
+| Runtime unhalted [s] |    1.3980    |
+|      Clock [MHz]     |   3131.8770  |
+|          CPI         |    0.2748    |
+|    L3 request rate   | 1.515236e-06 |
+|     L3 miss rate     | 3.113890e-08 |
+|     L3 miss ratio    |    0.0206    |
++----------------------+--------------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: L3CACHE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.000063 |
+|     call count    |     1    |
++-------------------+----------+
++-------------------------------+---------+--------+
+|             Event             | Counter | Core 0 |
++-------------------------------+---------+--------+
+|       INSTR_RETIRED_ANY       |  FIXC0  |  26528 |
+|     CPU_CLK_UNHALTED_CORE     |  FIXC1  |  58957 |
+|      CPU_CLK_UNHALTED_REF     |  FIXC2  | 127764 |
+|  MEM_LOAD_UOPS_RETIRED_L3_ALL |   PMC0  |   205  |
+| MEM_LOAD_UOPS_RETIRED_L3_MISS |   PMC1  |   58   |
+|        UOPS_RETIRED_ALL       |   PMC2  |  40113 |
++-------------------------------+---------+--------+
++----------------------+--------------+
+|        Metric        |    Core 0    |
++----------------------+--------------+
+|  Runtime (RDTSC) [s] |    0.0001    |
+| Runtime unhalted [s] | 2.267639e-05 |
+|      Clock [MHz]     |   1199.7432  |
+|          CPI         |    2.2224    |
+|    L3 request rate   |    0.0051    |
+|     L3 miss rate     |    0.0014    |
+|     L3 miss ratio    |    0.2829    |
++----------------------+--------------+

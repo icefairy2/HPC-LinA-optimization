@@ -6,6 +6,79 @@ vectorization) and other improvements.
 
 ## Optimization approach
 
+### Original Approach
+
+At first we looked at some profiling results of gprof, LIKWID and the Vtune Amplifier.
+The results didn't seem very useful because the original code of course is just single threaded.
+It became clear that almost all the computation time is spend in different calls of GEMM.
+GEMM is also called from different parts of the code. From the Kernel.cpp called by Simulator.cpp, the WaveFieldWriter.cpp and the Model.cpp.  
+
+![vtune-orig](images/vtune-orig.PNG)
+
+
+GEMM also appeared to be one of the few functions that actually do calculations instead of calling other functions.
+We decided that the GEMM.cpp is a very important file.
+Therefore we decided that we would start with optimizing the single core execution time of GEMM similarly to what we did in exercise 1.
+That means using 512 bit AVX512 intrinsic functions.  
+We also considered eliminating divisions in function calls by saving often used values as constants.  
+
+For example:
+```c
+    DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_QUANTITIES,
+            -1.0 / globals.hx, tmp, NUMBER_OF_BASIS_FUNCTIONS,
+            A, NUMBER_OF_QUANTITIES,
+            1.0, derivatives[der], NUMBER_OF_BASIS_FUNCTIONS );
+```
+The `-1.0 / globals.hx` does not during execution, so we saved it as a constant. We later aborted this idea because we didn't see any improvements in execution time.
+The code for it can still be found in the `single_core_opti` branch.
+
+
+We decided that we would do MPI next. We were planning on doing domain decomposition with a ghost layer as suggested in the presentation in order to distribute the grid among multiple MPI tasks. The original plan was to divide the grid in rows but during the implementing process we switched to 'rectangles' for the sub-grids.  
+
+We decided to add OpenMPI last, because no big code changes are need to make it work and because we wanted to make sure everything was working correctly before we add it.  
+
+For the parallel wavefield output we considered doing it using HDF5.
+
+### Single-core optimization
+
+The original approach of kind of reusing the implementation from assignment1 does not really work, as it requires the matrix sizes to be a multiple of 8 in each direction.
+This is due to the AVX512 isntructions loading and writing 8 values at once.  
+Because the matrices are quite small and N being always fixed to 3 alot of padding would be necessary in order to pack A, B and C into larger matrices.  
+This requires the creation of new buffers, filling than with zeros and copying the values from A, B and C every time the DGEMM function is executed.  
+This ended up being slower than our final approach.  
+
+In assignment2 we used LIBXSMM to generate optimized DGEMM microkernels. These kernels also run faster than our original implementation from assignment1.  
+Because the size of the matrices only depends on the order we were able to generate optimized kernels for almost every call of DGEMM.
+The only DGEMM kernels we weren't able to generate were 3 calls in `Kernels.cpp` using an alpha value different from 1 or -1.  
+
+```c
+  DGEMM(  NUMBER_OF_BASIS_FUNCTIONS, NUMBER_OF_QUANTITIES, NUMBER_OF_QUANTITIES,
+          1.0 / globals.hy, tmp, NUMBER_OF_BASIS_FUNCTIONS,
+          B, NUMBER_OF_QUANTITIES,
+          1.0, degreesOfFreedom, NUMBER_OF_BASIS_FUNCTIONS );
+```
+
+For these calls we used our own implentation with padding.
+The generated DGEMM kernels are located in `GeneratedGemm.h`.  
+
+They are called using if-clauses depending on the DGEMM parameters:  
+```c
+if (M_ == 3 && N_ == 3 && K_ == 3 && alpha == 1 && beta == 0 && lda == 3 && ldb == 3 && ldc == 3) {		
+		DGEMMm3n3k3a1b0(A,B,C);
+	}
+	else if (M_ == 6 && N_ == 3 && K_ == 6 && alpha == 1 && beta == 0 && lda == 6 && ldb == 6 && ldc == 6) {
+		DGEMMm6n3k6a1b0(A,B,C);
+	}
+	else if (M_ == 10 && N_ == 3 && K_ == 10 && alpha == 1 && beta == 0 && lda == 10 && ldb == 10 && ldc == 10) {
+		DGEMMm10n3k10a1b0(A,B,C);
+	}
+	.
+	.
+	.
+```
+
+This means that all the DGEMM calls are executing their calculations using some kind of AVX512 instructions.  
+
 ### MPI
 
 The MPI optimization consists in splitting the grid data computation equally

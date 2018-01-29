@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: BRANCH
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.612911 |
+|     call count    |     1    |
++-------------------+----------+
++------------------------------+---------+-------------+
+|             Event            | Counter |    Core 0   |
++------------------------------+---------+-------------+
+|       INSTR_RETIRED_ANY      |  FIXC0  | 18649510000 |
+|     CPU_CLK_UNHALTED_CORE    |  FIXC1  |  5114024000 |
+|     CPU_CLK_UNHALTED_REF     |  FIXC2  |  4189194000 |
+| BR_INST_RETIRED_ALL_BRANCHES |   PMC0  |  1143483000 |
+| BR_MISP_RETIRED_ALL_BRANCHES |   PMC1  |   2194617   |
++------------------------------+---------+-------------+
++----------------------------+-----------+
+|           Metric           |   Core 0  |
++----------------------------+-----------+
+|     Runtime (RDTSC) [s]    |   1.6129  |
+|    Runtime unhalted [s]    |   1.9670  |
+|         Clock [MHz]        | 3173.9560 |
+|             CPI            |   0.2742  |
+|         Branch rate        |   0.0613  |
+|  Branch misprediction rate |   0.0001  |
+| Branch misprediction ratio |   0.0019  |
+|   Instructions per branch  |  16.3094  |
++----------------------------+-----------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: BRANCH
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.008919 |
+|     call count    |     1    |
++-------------------+----------+
++------------------------------+---------+----------+
+|             Event            | Counter |  Core 0  |
++------------------------------+---------+----------+
+|       INSTR_RETIRED_ANY      |  FIXC0  | 23759280 |
+|     CPU_CLK_UNHALTED_CORE    |  FIXC1  | 10662980 |
+|     CPU_CLK_UNHALTED_REF     |  FIXC2  | 23103080 |
+| BR_INST_RETIRED_ALL_BRANCHES |   PMC0  |  1391186 |
+| BR_MISP_RETIRED_ALL_BRANCHES |   PMC1  |   2450   |
++------------------------------+---------+----------+
++----------------------------+-----------+
+|           Metric           |   Core 0  |
++----------------------------+-----------+
+|     Runtime (RDTSC) [s]    |   0.0089  |
+|    Runtime unhalted [s]    |   0.0041  |
+|         Clock [MHz]        | 1199.9892 |
+|             CPI            |   0.4488  |
+|         Branch rate        |   0.0586  |
+|  Branch misprediction rate |   0.0001  |
+| Branch misprediction ratio |   0.0018  |
+|   Instructions per branch  |  17.0784  |
++----------------------------+-----------+

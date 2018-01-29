@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: ICACHE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.554633 |
+|     call count    |     1    |
++-------------------+----------+
++-----------------------+---------+-------------+
+|         Event         | Counter |    Core 0   |
++-----------------------+---------+-------------+
+|   INSTR_RETIRED_ANY   |  FIXC0  | 18649510000 |
+| CPU_CLK_UNHALTED_CORE |  FIXC1  |  5124416000 |
+|  CPU_CLK_UNHALTED_REF |  FIXC2  |  4037766000 |
+|    ICACHE_ACCESSES    |   PMC0  |   42262940  |
+|     ICACHE_MISSES     |   PMC1  |    16114    |
+|  ICACHE_IFETCH_STALL  |   PMC2  |    213640   |
+|   ILD_STALL_IQ_FULL   |   PMC3  |   23836240  |
++-----------------------+---------+-------------+
++---------------------------+--------------+
+|           Metric          |    Core 0    |
++---------------------------+--------------+
+|    Runtime (RDTSC) [s]    |    1.5546    |
+|    Runtime unhalted [s]   |    1.9710    |
+|        Clock [MHz]        |   3299.6776  |
+|            CPI            |    0.2748    |
+|      L1I request rate     |    0.0023    |
+|       L1I miss rate       | 8.640441e-07 |
+|       L1I miss ratio      |    0.0004    |
+|         L1I stalls        |    213640    |
+|       L1I stall rate      | 1.145553e-05 |
+|   L1I queue full stalls   |   23836240   |
+| L1I queue full stall rate |    0.0013    |
++---------------------------+--------------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: ICACHE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.008535 |
+|     call count    |     1    |
++-------------------+----------+
++-----------------------+---------+----------+
+|         Event         | Counter |  Core 0  |
++-----------------------+---------+----------+
+|   INSTR_RETIRED_ANY   |  FIXC0  | 23760090 |
+| CPU_CLK_UNHALTED_CORE |  FIXC1  | 10694070 |
+|  CPU_CLK_UNHALTED_REF |  FIXC2  | 22037000 |
+|    ICACHE_ACCESSES    |   PMC0  |   60413  |
+|     ICACHE_MISSES     |   PMC1  |    915   |
+|  ICACHE_IFETCH_STALL  |   PMC2  |   18468  |
+|   ILD_STALL_IQ_FULL   |   PMC3  |   26789  |
++-----------------------+---------+----------+
++---------------------------+--------------+
+|           Metric          |    Core 0    |
++---------------------------+--------------+
+|    Runtime (RDTSC) [s]    |    0.0085    |
+|    Runtime unhalted [s]   |    0.0041    |
+|        Clock [MHz]        |   1261.7079  |
+|            CPI            |    0.4501    |
+|      L1I request rate     |    0.0025    |
+|       L1I miss rate       | 3.850996e-05 |
+|       L1I miss ratio      |    0.0151    |
+|         L1I stalls        |     18468    |
+|       L1I stall rate      |    0.0008    |
+|   L1I queue full stalls   |     26789    |
+| L1I queue full stall rate |    0.0011    |
++---------------------------+--------------+

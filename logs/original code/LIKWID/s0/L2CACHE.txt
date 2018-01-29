@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: L2CACHE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.600975 |
+|     call count    |     1    |
++-------------------+----------+
++-----------------------+---------+-------------+
+|         Event         | Counter |    Core 0   |
++-----------------------+---------+-------------+
+|   INSTR_RETIRED_ANY   |  FIXC0  | 18649510000 |
+| CPU_CLK_UNHALTED_CORE |  FIXC1  |  5119021000 |
+|  CPU_CLK_UNHALTED_REF |  FIXC2  |  4157840000 |
+| L2_TRANS_ALL_REQUESTS |   PMC0  |   20405470  |
+|     L2_RQSTS_MISS     |   PMC1  |    99933    |
++-----------------------+---------+-------------+
++----------------------+--------------+
+|        Metric        |    Core 0    |
++----------------------+--------------+
+|  Runtime (RDTSC) [s] |    1.6010    |
+| Runtime unhalted [s] |    1.9689    |
+|      Clock [MHz]     |   3201.0162  |
+|          CPI         |    0.2745    |
+|    L2 request rate   |    0.0011    |
+|     L2 miss rate     | 5.358479e-06 |
+|     L2 miss ratio    |    0.0049    |
++----------------------+--------------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: L2CACHE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.008946 |
+|     call count    |     1    |
++-------------------+----------+
++-----------------------+---------+----------+
+|         Event         | Counter |  Core 0  |
++-----------------------+---------+----------+
+|   INSTR_RETIRED_ANY   |  FIXC0  | 23759280 |
+| CPU_CLK_UNHALTED_CORE |  FIXC1  | 10669250 |
+|  CPU_CLK_UNHALTED_REF |  FIXC2  | 23116810 |
+| L2_TRANS_ALL_REQUESTS |   PMC0  |   8400   |
+|     L2_RQSTS_MISS     |   PMC1  |   2408   |
++-----------------------+---------+----------+
++----------------------+-----------+
+|        Metric        |   Core 0  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |   0.0089  |
+| Runtime unhalted [s] |   0.0041  |
+|      Clock [MHz]     | 1199.9820 |
+|          CPI         |   0.4491  |
+|    L2 request rate   |   0.0004  |
+|     L2 miss rate     |   0.0001  |
+|     L2 miss ratio    |   0.2867  |
++----------------------+-----------+

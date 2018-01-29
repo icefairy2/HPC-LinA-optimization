@@ -1,0 +1,70 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: UOPS
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.102932 |
+|     call count    |     1    |
++-------------------+----------+
++-------------------------+---------+-------------+
+|          Event          | Counter |    Core 0   |
++-------------------------+---------+-------------+
+|    INSTR_RETIRED_ANY    |  FIXC0  | 13224210000 |
+|  CPU_CLK_UNHALTED_CORE  |  FIXC1  |  3635995000 |
+|   CPU_CLK_UNHALTED_REF  |  FIXC2  |  2864857000 |
+|     UOPS_ISSUED_ANY     |   PMC0  | 13670170000 |
+|   UOPS_EXECUTED_THREAD  |   PMC1  | 11976950000 |
+|     UOPS_RETIRED_ALL    |   PMC2  | 14001620000 |
+| UOPS_ISSUED_FLAGS_MERGE |   PMC3  |     874     |
++-------------------------+---------+-------------+
++----------------------+-------------+
+|        Metric        |    Core 0   |
++----------------------+-------------+
+|  Runtime (RDTSC) [s] |    1.1029   |
+| Runtime unhalted [s] |    1.3985   |
+|      Clock [MHz]     |  3299.8294  |
+|          CPI         |    0.2749   |
+|      Issued UOPs     | 13670170000 |
+|      Merged UOPs     |     874     |
+|     Executed UOPs    | 11976950000 |
+|     Retired UOPs     | 14001620000 |
++----------------------+-------------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: UOPS
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.008926 |
+|     call count    |     1    |
++-------------------+----------+
++-------------------------+---------+----------+
+|          Event          | Counter |  Core 0  |
++-------------------------+---------+----------+
+|    INSTR_RETIRED_ANY    |  FIXC0  | 23761000 |
+|  CPU_CLK_UNHALTED_CORE  |  FIXC1  | 10671170 |
+|   CPU_CLK_UNHALTED_REF  |  FIXC2  | 23120810 |
+|     UOPS_ISSUED_ANY     |   PMC0  | 26668440 |
+|   UOPS_EXECUTED_THREAD  |   PMC1  | 29336230 |
+|     UOPS_RETIRED_ALL    |   PMC2  | 30835900 |
+| UOPS_ISSUED_FLAGS_MERGE |   PMC3  |  147640  |
++-------------------------+---------+----------+
++----------------------+-----------+
+|        Metric        |   Core 0  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |   0.0089  |
+| Runtime unhalted [s] |   0.0041  |
+|      Clock [MHz]     | 1199.9970 |
+|          CPI         |   0.4491  |
+|      Issued UOPs     |  26668440 |
+|      Merged UOPs     |   147640  |
+|     Executed UOPs    |  29336230 |
+|     Retired UOPs     |  30835900 |
++----------------------+-----------+

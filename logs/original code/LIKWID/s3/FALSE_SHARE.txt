@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: FALSE_SHARE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.151668 |
+|     call count    |     1    |
++-------------------+----------+
++-------------------------------------------+---------+-------------+
+|                   Event                   | Counter |    Core 0   |
++-------------------------------------------+---------+-------------+
+|             INSTR_RETIRED_ANY             |  FIXC0  | 13224310000 |
+|           CPU_CLK_UNHALTED_CORE           |  FIXC1  |  3626003000 |
+|            CPU_CLK_UNHALTED_REF           |  FIXC2  |  2991094000 |
+|   MEM_LOAD_UOPS_L3_HIT_RETIRED_XSNP_HITM  |   PMC0  |      0      |
+| MEM_LOAD_UOPS_L3_MISS_RETIRED_REMOTE_HITM |   PMC1  |      19     |
+|       MEM_LOAD_UOPS_RETIRED_ALL_ALL       |   PMC2  |  2747193000 |
++-------------------------------------------+---------+-------------+
++------------------------------------------+--------------+
+|                  Metric                  |    Core 0    |
++------------------------------------------+--------------+
+|            Runtime (RDTSC) [s]           |    1.1517    |
+|           Runtime unhalted [s]           |    1.3946    |
+|                Clock [MHz]               |   3151.8543  |
+|                    CPI                   |    0.2742    |
+| Local LLC hit with false sharing [MByte] |       0      |
+|   Local LLC hit with false sharing rate  |       0      |
+|     Remote LLC false sharing [MByte]     |    0.0012    |
+|       Remote LLC false sharing rate      | 6.916150e-09 |
++------------------------------------------+--------------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: FALSE_SHARE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.000063 |
+|     call count    |     1    |
++-------------------+----------+
++-------------------------------------------+---------+--------+
+|                   Event                   | Counter | Core 0 |
++-------------------------------------------+---------+--------+
+|             INSTR_RETIRED_ANY             |  FIXC0  |  28047 |
+|           CPU_CLK_UNHALTED_CORE           |  FIXC1  |  61144 |
+|            CPU_CLK_UNHALTED_REF           |  FIXC2  | 132496 |
+|   MEM_LOAD_UOPS_L3_HIT_RETIRED_XSNP_HITM  |   PMC0  |    0   |
+| MEM_LOAD_UOPS_L3_MISS_RETIRED_REMOTE_HITM |   PMC1  |    0   |
+|       MEM_LOAD_UOPS_RETIRED_ALL_ALL       |   PMC2  |  5066  |
++-------------------------------------------+---------+--------+
++------------------------------------------+--------------+
+|                  Metric                  |    Core 0    |
++------------------------------------------+--------------+
+|            Runtime (RDTSC) [s]           |    0.0001    |
+|           Runtime unhalted [s]           | 2.351721e-05 |
+|                Clock [MHz]               |   1199.8284  |
+|                    CPI                   |    2.1801    |
+| Local LLC hit with false sharing [MByte] |       0      |
+|   Local LLC hit with false sharing rate  |       0      |
+|     Remote LLC false sharing [MByte]     |       0      |
+|       Remote LLC false sharing rate      |       0      |
++------------------------------------------+--------------+

@@ -1,0 +1,572 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 97.77     39.06    39.06 13955200     0.00     0.00  DGEMM(unsigned int, unsigned int, unsigned int, double, double const*, unsigned int, double const*, unsigned int, double, double*, unsigned int)
+  0.48     39.25     0.19        1     0.19    39.79  simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&)
+  0.40     39.41     0.16                             __intel_mic_avx512f_memset
+  0.38     39.56     0.15   996800     0.00     0.00  computeAminus(Material const&, Material const&, double*)
+  0.25     39.66     0.10   996800     0.00     0.00  computeAplus(Material const&, Material const&, double*)
+  0.25     39.76     0.10   249200     0.00     0.00  computeAder(double, GlobalConstants const&, Material const&, double const (&) [63], double (&) [63])
+  0.23     39.85     0.09  1993600     0.00     0.00  rotateFluxSolver(double, double, double const*, double*)
+  0.15     39.91     0.06  1993600     0.00     0.00  computeFlux(double, double const*, double const*, double const (&) [63], double*)
+  0.08     39.94     0.03   498400     0.00     0.00  computeA(Material const&, double*)
+  0.03     39.95     0.01   498400     0.00     0.00  computeB(Material const&, double*)
+  0.00     39.95     0.00   249200     0.00     0.00  computeVolumeIntegral(GlobalConstants const&, Material const&, double const (&) [63], double (&) [63])
+  0.00     39.95     0.00     1246     0.00     0.00  sourceFunctionAntiderivative(double)
+  0.00     39.95     0.00      624     0.00     0.00  WaveFieldWriter::writeTimestep(double, Grid<double [63]>&, bool)
+  0.00     39.95     0.00       36     0.00     0.00  TCLAP::Arg::operator==(TCLAP::Arg const&) const
+  0.00     39.95     0.00       27     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     39.95     0.00       15     0.00     0.00  TCLAP::Arg::argMatches(std::string const&) const
+  0.00     39.95     0.00       15     0.00     0.00  TCLAP::Arg::trimFlag(std::string&, std::string&) const
+  0.00     39.95     0.00       12     0.00     0.00  TCLAP::Arg::isRequired() const
+  0.00     39.95     0.00        9     0.00     0.00  TCLAP::CmdLine::add(TCLAP::Arg*)
+  0.00     39.95     0.00        9     0.00     0.00  TCLAP::Arg::addToList(std::list<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >&) const
+  0.00     39.95     0.00        6     0.00     0.00  TCLAP::CmdLine::add(TCLAP::Arg&)
+  0.00     39.95     0.00        6     0.00     0.00  TCLAP::ValueArg<double>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&)
+  0.00     39.95     0.00        6     0.00     0.00  TCLAP::ValueArg<int>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&)
+  0.00     39.95     0.00        3     0.00     0.00  TCLAP::XorHandler::check(TCLAP::Arg const*)
+  0.00     39.95     0.00        3     0.00     0.00  void TCLAP::ExtractValue<int>(int&, std::string const&, TCLAP::ValueLike)
+  0.00     39.95     0.00        3     0.00     0.00  TCLAP::Arg::Arg(std::string const&, std::string const&, std::string const&, bool, bool, TCLAP::Visitor*)
+  0.00     39.95     0.00        3     0.00     0.00  void TCLAP::DelPtr<TCLAP::Arg*>(TCLAP::Arg*)
+  0.00     39.95     0.00        3     0.00     0.00  void TCLAP::DelPtr<TCLAP::Visitor*>(TCLAP::Visitor*)
+  0.00     39.95     0.00        3     0.00     0.00  TCLAP::ValueArg<std::string>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&)
+  0.00     39.95     0.00        3     0.00     0.00  TCLAP::ValueArg<int>::ValueArg(std::string const&, std::string const&, std::string const&, bool, int, std::string const&, TCLAP::Visitor*)
+  0.00     39.95     0.00        3     0.00     0.00  TCLAP::ValueArg<int>::~ValueArg()
+  0.00     39.95     0.00        3     0.00     0.00  TCLAP::SwitchArg::~SwitchArg()
+  0.00     39.95     0.00        2     0.00     0.00  determineTimestep(double, double, Grid<Material>&)
+  0.00     39.95     0.00        2     0.00     0.00  TCLAP::ValueArg<double>::ValueArg(std::string const&, std::string const&, std::string const&, bool, double, std::string const&, TCLAP::Visitor*)
+  0.00     39.95     0.00        2     0.00     0.00  TCLAP::ValueArg<double>::~ValueArg()
+  0.00     39.95     0.00        1     0.00     0.00  initScenario2(GlobalConstants&, Grid<Material>&, Grid<double [63]>&, SourceTerm&)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction0(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction1(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction2(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction3(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction4(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction5(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction6(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction7(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction8(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction9(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction10(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction11(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction12(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction13(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction14(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction15(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction16(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction17(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction18(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction19(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  basisFunction20(double, double)
+  0.00     39.95     0.00        1     0.00     0.00  initSourcetermPhi(double, double, SourceTerm&)
+  0.00     39.95     0.00        1     0.00     0.00  WaveFieldWriter::WaveFieldWriter(std::string const&, GlobalConstants const&, double, int)
+  0.00     39.95     0.00        1     0.00     0.00  WaveFieldWriter::~WaveFieldWriter()
+  0.00     39.95     0.00        1     0.00     0.00  Grid<Material>::Grid(int, int)
+  0.00     39.95     0.00        1     0.00     0.00  Grid<Material>::~Grid()
+  0.00     39.95     0.00        1     0.00     0.00  Grid<double [63]>::Grid(int, int)
+  0.00     39.95     0.00        1     0.00     0.00  Grid<double [63]>::~Grid()
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::HelpVisitor::~HelpVisitor()
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::VersionVisitor::~VersionVisitor()
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::IgnoreRestVisitor::~IgnoreRestVisitor()
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::CmdLine::parse(std::vector<std::string, std::allocator<std::string> >&)
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::CmdLine::parse(int, char const* const*)
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::CmdLine::CmdLine(std::string const&, char, std::string const&, bool)
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::CmdLine::~CmdLine()
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::ValueArg<std::string>::ValueArg(std::string const&, std::string const&, std::string const&, bool, std::string, std::string const&, TCLAP::Visitor*)
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::ValueArg<std::string>::~ValueArg()
+  0.00     39.95     0.00        1     0.00     0.00  TCLAP::StdOutput::~StdOutput()
+  0.00     39.95     0.00        1     0.00     0.00  __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  0.00     39.95     0.00        1     0.00     0.00  std::vector<std::vector<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >, std::allocator<std::vector<TCLAP::Arg*, std::allocator<TCLAP::Arg*> > > >::vector()
+  0.00     39.95     0.00        1     0.00     0.00  std::vector<std::string, std::allocator<std::string> >::vector()
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2015 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 0.03% of 39.95 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     99.6    0.00   39.79                 main [1]
+                0.19   39.60       1/1           simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+                0.00    0.00      26/27          __gnu_cxx::__exchange_and_add_dispatch(int*, int) [28]
+                0.00    0.00       6/9           TCLAP::CmdLine::add(TCLAP::Arg*) [32]
+                0.00    0.00       6/6           TCLAP::CmdLine::add(TCLAP::Arg&) [34]
+                0.00    0.00       3/3           TCLAP::ValueArg<int>::ValueArg(std::string const&, std::string const&, std::string const&, bool, int, std::string const&, TCLAP::Visitor*) [43]
+                0.00    0.00       3/3           TCLAP::ValueArg<int>::~ValueArg() [44]
+                0.00    0.00       2/2           TCLAP::ValueArg<double>::ValueArg(std::string const&, std::string const&, std::string const&, bool, double, std::string const&, TCLAP::Visitor*) [47]
+                0.00    0.00       2/2           TCLAP::ValueArg<double>::~ValueArg() [48]
+                0.00    0.00       1/1           TCLAP::CmdLine::CmdLine(std::string const&, char, std::string const&, bool) [83]
+                0.00    0.00       1/1           TCLAP::ValueArg<std::string>::ValueArg(std::string const&, std::string const&, std::string const&, bool, std::string, std::string const&, TCLAP::Visitor*) [85]
+                0.00    0.00       1/1           TCLAP::CmdLine::parse(int, char const* const*) [82]
+                0.00    0.00       1/1           TCLAP::ValueArg<std::string>::~ValueArg() [86]
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [84]
+                0.00    0.00       1/1           Grid<double [63]>::Grid(int, int) [76]
+                0.00    0.00       1/1           Grid<Material>::Grid(int, int) [74]
+                0.00    0.00       1/1           initScenario2(GlobalConstants&, Grid<Material>&, Grid<double [63]>&, SourceTerm&) [49]
+                0.00    0.00       1/2           determineTimestep(double, double, Grid<Material>&) [46]
+                0.00    0.00       1/1           WaveFieldWriter::WaveFieldWriter(std::string const&, GlobalConstants const&, double, int) [72]
+                0.00    0.00       1/1           WaveFieldWriter::~WaveFieldWriter() [73]
+                0.00    0.00       1/1           Grid<double [63]>::~Grid() [77]
+                0.00    0.00       1/1           Grid<Material>::~Grid() [75]
+-----------------------------------------------
+                0.19   39.60       1/1           main [1]
+[2]     99.6    0.19   39.60       1         simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+                0.10   13.97  249200/249200      computeAder(double, GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [4]
+                0.09   11.16 1993600/1993600     rotateFluxSolver(double, double, double const*, double*) [5]
+                0.06   11.16 1993600/1993600     computeFlux(double, double const*, double const*, double const (&) [63], double*) [6]
+                0.00    2.81  249200/249200      computeVolumeIntegral(GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [7]
+                0.15    0.00  996800/996800      computeAminus(Material const&, Material const&, double*) [9]
+                0.10    0.00  996800/996800      computeAplus(Material const&, Material const&, double*) [10]
+                0.00    0.00    1246/1246        sourceFunctionAntiderivative(double) [25]
+                0.00    0.00     624/624         WaveFieldWriter::writeTimestep(double, Grid<double [63]>&, bool) [26]
+-----------------------------------------------
+                2.79    0.00  996800/13955200     computeVolumeIntegral(GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [7]
+               11.16    0.00 3987200/13955200     computeFlux(double, double const*, double const*, double const (&) [63], double*) [6]
+               11.16    0.00 3987200/13955200     rotateFluxSolver(double, double, double const*, double*) [5]
+               13.95    0.00 4984000/13955200     computeAder(double, GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [4]
+[3]     97.8   39.06    0.00 13955200         DGEMM(unsigned int, unsigned int, unsigned int, double, double const*, unsigned int, double const*, unsigned int, double, double*, unsigned int) [3]
+-----------------------------------------------
+                0.10   13.97  249200/249200      simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+[4]     35.2    0.10   13.97  249200         computeAder(double, GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [4]
+               13.95    0.00 4984000/13955200     DGEMM(unsigned int, unsigned int, unsigned int, double, double const*, unsigned int, double const*, unsigned int, double, double*, unsigned int) [3]
+                0.01    0.00  249200/498400      computeA(Material const&, double*) [11]
+                0.01    0.00  249200/498400      computeB(Material const&, double*) [12]
+-----------------------------------------------
+                0.09   11.16 1993600/1993600     simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+[5]     28.2    0.09   11.16 1993600         rotateFluxSolver(double, double, double const*, double*) [5]
+               11.16    0.00 3987200/13955200     DGEMM(unsigned int, unsigned int, unsigned int, double, double const*, unsigned int, double const*, unsigned int, double, double*, unsigned int) [3]
+-----------------------------------------------
+                0.06   11.16 1993600/1993600     simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+[6]     28.1    0.06   11.16 1993600         computeFlux(double, double const*, double const*, double const (&) [63], double*) [6]
+               11.16    0.00 3987200/13955200     DGEMM(unsigned int, unsigned int, unsigned int, double, double const*, unsigned int, double const*, unsigned int, double, double*, unsigned int) [3]
+-----------------------------------------------
+                0.00    2.81  249200/249200      simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+[7]      7.0    0.00    2.81  249200         computeVolumeIntegral(GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [7]
+                2.79    0.00  996800/13955200     DGEMM(unsigned int, unsigned int, unsigned int, double, double const*, unsigned int, double const*, unsigned int, double, double*, unsigned int) [3]
+                0.01    0.00  249200/498400      computeA(Material const&, double*) [11]
+                0.01    0.00  249200/498400      computeB(Material const&, double*) [12]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]      0.4    0.16    0.00                 __intel_mic_avx512f_memset [8]
+-----------------------------------------------
+                0.15    0.00  996800/996800      simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+[9]      0.4    0.15    0.00  996800         computeAminus(Material const&, Material const&, double*) [9]
+-----------------------------------------------
+                0.10    0.00  996800/996800      simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+[10]     0.3    0.10    0.00  996800         computeAplus(Material const&, Material const&, double*) [10]
+-----------------------------------------------
+                0.01    0.00  249200/498400      computeAder(double, GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [4]
+                0.01    0.00  249200/498400      computeVolumeIntegral(GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [7]
+[11]     0.1    0.03    0.00  498400         computeA(Material const&, double*) [11]
+-----------------------------------------------
+                0.01    0.00  249200/498400      computeAder(double, GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [4]
+                0.01    0.00  249200/498400      computeVolumeIntegral(GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [7]
+[12]     0.0    0.01    0.00  498400         computeB(Material const&, double*) [12]
+-----------------------------------------------
+                0.00    0.00    1246/1246        simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+[25]     0.0    0.00    0.00    1246         sourceFunctionAntiderivative(double) [25]
+-----------------------------------------------
+                0.00    0.00     624/624         simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [2]
+[26]     0.0    0.00    0.00     624         WaveFieldWriter::writeTimestep(double, Grid<double [63]>&, bool) [26]
+-----------------------------------------------
+                0.00    0.00      36/36          TCLAP::CmdLine::add(TCLAP::Arg*) [32]
+[27]     0.0    0.00    0.00      36         TCLAP::Arg::operator==(TCLAP::Arg const&) const [27]
+-----------------------------------------------
+                0.00    0.00       1/27          __do_global_ctors_aux [340]
+                0.00    0.00      26/27          main [1]
+[28]     0.0    0.00    0.00      27         __gnu_cxx::__exchange_and_add_dispatch(int*, int) [28]
+-----------------------------------------------
+                0.00    0.00       3/15          TCLAP::ValueArg<std::string>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [42]
+                0.00    0.00       6/15          TCLAP::ValueArg<int>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [36]
+                0.00    0.00       6/15          TCLAP::ValueArg<double>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [35]
+[29]     0.0    0.00    0.00      15         TCLAP::Arg::argMatches(std::string const&) const [29]
+-----------------------------------------------
+                0.00    0.00       3/15          TCLAP::ValueArg<std::string>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [42]
+                0.00    0.00       6/15          TCLAP::ValueArg<int>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [36]
+                0.00    0.00       6/15          TCLAP::ValueArg<double>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [35]
+[30]     0.0    0.00    0.00      15         TCLAP::Arg::trimFlag(std::string&, std::string&) const [30]
+-----------------------------------------------
+                0.00    0.00       3/12          TCLAP::XorHandler::check(TCLAP::Arg const*) [37]
+                0.00    0.00       9/12          TCLAP::CmdLine::add(TCLAP::Arg*) [32]
+[31]     0.0    0.00    0.00      12         TCLAP::Arg::isRequired() const [31]
+-----------------------------------------------
+                0.00    0.00       3/9           TCLAP::CmdLine::CmdLine(std::string const&, char, std::string const&, bool) [83]
+                0.00    0.00       6/9           main [1]
+[32]     0.0    0.00    0.00       9         TCLAP::CmdLine::add(TCLAP::Arg*) [32]
+                0.00    0.00      36/36          TCLAP::Arg::operator==(TCLAP::Arg const&) const [27]
+                0.00    0.00       9/12          TCLAP::Arg::isRequired() const [31]
+                0.00    0.00       9/9           TCLAP::Arg::addToList(std::list<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >&) const [33]
+-----------------------------------------------
+                0.00    0.00       9/9           TCLAP::CmdLine::add(TCLAP::Arg*) [32]
+[33]     0.0    0.00    0.00       9         TCLAP::Arg::addToList(std::list<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >&) const [33]
+-----------------------------------------------
+                0.00    0.00       6/6           main [1]
+[34]     0.0    0.00    0.00       6         TCLAP::CmdLine::add(TCLAP::Arg&) [34]
+-----------------------------------------------
+                0.00    0.00       6/6           TCLAP::CmdLine::parse(std::vector<std::string, std::allocator<std::string> >&) [81]
+[35]     0.0    0.00    0.00       6         TCLAP::ValueArg<double>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [35]
+                0.00    0.00       6/15          TCLAP::Arg::trimFlag(std::string&, std::string&) const [30]
+                0.00    0.00       6/15          TCLAP::Arg::argMatches(std::string const&) const [29]
+-----------------------------------------------
+                0.00    0.00       6/6           TCLAP::CmdLine::parse(std::vector<std::string, std::allocator<std::string> >&) [81]
+[36]     0.0    0.00    0.00       6         TCLAP::ValueArg<int>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [36]
+                0.00    0.00       6/15          TCLAP::Arg::trimFlag(std::string&, std::string&) const [30]
+                0.00    0.00       6/15          TCLAP::Arg::argMatches(std::string const&) const [29]
+                0.00    0.00       3/3           void TCLAP::ExtractValue<int>(int&, std::string const&, TCLAP::ValueLike) [38]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::CmdLine::parse(std::vector<std::string, std::allocator<std::string> >&) [81]
+[37]     0.0    0.00    0.00       3         TCLAP::XorHandler::check(TCLAP::Arg const*) [37]
+                0.00    0.00       3/12          TCLAP::Arg::isRequired() const [31]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::ValueArg<int>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [36]
+[38]     0.0    0.00    0.00       3         void TCLAP::ExtractValue<int>(int&, std::string const&, TCLAP::ValueLike) [38]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::CmdLine::CmdLine(std::string const&, char, std::string const&, bool) [83]
+[39]     0.0    0.00    0.00       3         TCLAP::Arg::Arg(std::string const&, std::string const&, std::string const&, bool, bool, TCLAP::Visitor*) [39]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::CmdLine::~CmdLine() [84]
+[40]     0.0    0.00    0.00       3         void TCLAP::DelPtr<TCLAP::Arg*>(TCLAP::Arg*) [40]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::CmdLine::~CmdLine() [84]
+[41]     0.0    0.00    0.00       3         void TCLAP::DelPtr<TCLAP::Visitor*>(TCLAP::Visitor*) [41]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::CmdLine::parse(std::vector<std::string, std::allocator<std::string> >&) [81]
+[42]     0.0    0.00    0.00       3         TCLAP::ValueArg<std::string>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [42]
+                0.00    0.00       3/15          TCLAP::Arg::trimFlag(std::string&, std::string&) const [30]
+                0.00    0.00       3/15          TCLAP::Arg::argMatches(std::string const&) const [29]
+-----------------------------------------------
+                0.00    0.00       3/3           main [1]
+[43]     0.0    0.00    0.00       3         TCLAP::ValueArg<int>::ValueArg(std::string const&, std::string const&, std::string const&, bool, int, std::string const&, TCLAP::Visitor*) [43]
+-----------------------------------------------
+                0.00    0.00       3/3           main [1]
+[44]     0.0    0.00    0.00       3         TCLAP::ValueArg<int>::~ValueArg() [44]
+-----------------------------------------------
+                0.00    0.00       3/3           TCLAP::CmdLine::~CmdLine() [84]
+[45]     0.0    0.00    0.00       3         TCLAP::SwitchArg::~SwitchArg() [45]
+-----------------------------------------------
+                0.00    0.00       1/2           main [1]
+                0.00    0.00       1/2           __do_global_ctors_aux [340]
+[46]     0.0    0.00    0.00       2         determineTimestep(double, double, Grid<Material>&) [46]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[47]     0.0    0.00    0.00       2         TCLAP::ValueArg<double>::ValueArg(std::string const&, std::string const&, std::string const&, bool, double, std::string const&, TCLAP::Visitor*) [47]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[48]     0.0    0.00    0.00       2         TCLAP::ValueArg<double>::~ValueArg() [48]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[49]     0.0    0.00    0.00       1         initScenario2(GlobalConstants&, Grid<Material>&, Grid<double [63]>&, SourceTerm&) [49]
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[50]     0.0    0.00    0.00       1         basisFunction0(double, double) [50]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[51]     0.0    0.00    0.00       1         basisFunction1(double, double) [51]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[52]     0.0    0.00    0.00       1         basisFunction2(double, double) [52]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[53]     0.0    0.00    0.00       1         basisFunction3(double, double) [53]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[54]     0.0    0.00    0.00       1         basisFunction4(double, double) [54]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[55]     0.0    0.00    0.00       1         basisFunction5(double, double) [55]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[56]     0.0    0.00    0.00       1         basisFunction6(double, double) [56]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[57]     0.0    0.00    0.00       1         basisFunction7(double, double) [57]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[58]     0.0    0.00    0.00       1         basisFunction8(double, double) [58]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[59]     0.0    0.00    0.00       1         basisFunction9(double, double) [59]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[60]     0.0    0.00    0.00       1         basisFunction10(double, double) [60]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[61]     0.0    0.00    0.00       1         basisFunction11(double, double) [61]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[62]     0.0    0.00    0.00       1         basisFunction12(double, double) [62]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[63]     0.0    0.00    0.00       1         basisFunction13(double, double) [63]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[64]     0.0    0.00    0.00       1         basisFunction14(double, double) [64]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[65]     0.0    0.00    0.00       1         basisFunction15(double, double) [65]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[66]     0.0    0.00    0.00       1         basisFunction16(double, double) [66]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[67]     0.0    0.00    0.00       1         basisFunction17(double, double) [67]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[68]     0.0    0.00    0.00       1         basisFunction18(double, double) [68]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[69]     0.0    0.00    0.00       1         basisFunction19(double, double) [69]
+-----------------------------------------------
+                0.00    0.00       1/1           initSourcetermPhi(double, double, SourceTerm&) [71]
+[70]     0.0    0.00    0.00       1         basisFunction20(double, double) [70]
+-----------------------------------------------
+                0.00    0.00       1/1           initScenario2(GlobalConstants&, Grid<Material>&, Grid<double [63]>&, SourceTerm&) [49]
+[71]     0.0    0.00    0.00       1         initSourcetermPhi(double, double, SourceTerm&) [71]
+                0.00    0.00       1/1           basisFunction20(double, double) [70]
+                0.00    0.00       1/1           basisFunction19(double, double) [69]
+                0.00    0.00       1/1           basisFunction18(double, double) [68]
+                0.00    0.00       1/1           basisFunction17(double, double) [67]
+                0.00    0.00       1/1           basisFunction16(double, double) [66]
+                0.00    0.00       1/1           basisFunction15(double, double) [65]
+                0.00    0.00       1/1           basisFunction14(double, double) [64]
+                0.00    0.00       1/1           basisFunction13(double, double) [63]
+                0.00    0.00       1/1           basisFunction12(double, double) [62]
+                0.00    0.00       1/1           basisFunction11(double, double) [61]
+                0.00    0.00       1/1           basisFunction10(double, double) [60]
+                0.00    0.00       1/1           basisFunction9(double, double) [59]
+                0.00    0.00       1/1           basisFunction8(double, double) [58]
+                0.00    0.00       1/1           basisFunction7(double, double) [57]
+                0.00    0.00       1/1           basisFunction6(double, double) [56]
+                0.00    0.00       1/1           basisFunction5(double, double) [55]
+                0.00    0.00       1/1           basisFunction4(double, double) [54]
+                0.00    0.00       1/1           basisFunction3(double, double) [53]
+                0.00    0.00       1/1           basisFunction2(double, double) [52]
+                0.00    0.00       1/1           basisFunction1(double, double) [51]
+                0.00    0.00       1/1           basisFunction0(double, double) [50]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[72]     0.0    0.00    0.00       1         WaveFieldWriter::WaveFieldWriter(std::string const&, GlobalConstants const&, double, int) [72]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[73]     0.0    0.00    0.00       1         WaveFieldWriter::~WaveFieldWriter() [73]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[74]     0.0    0.00    0.00       1         Grid<Material>::Grid(int, int) [74]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[75]     0.0    0.00    0.00       1         Grid<Material>::~Grid() [75]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[76]     0.0    0.00    0.00       1         Grid<double [63]>::Grid(int, int) [76]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[77]     0.0    0.00    0.00       1         Grid<double [63]>::~Grid() [77]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [84]
+[78]     0.0    0.00    0.00       1         TCLAP::HelpVisitor::~HelpVisitor() [78]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [84]
+[79]     0.0    0.00    0.00       1         TCLAP::VersionVisitor::~VersionVisitor() [79]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [84]
+[80]     0.0    0.00    0.00       1         TCLAP::IgnoreRestVisitor::~IgnoreRestVisitor() [80]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::parse(int, char const* const*) [82]
+[81]     0.0    0.00    0.00       1         TCLAP::CmdLine::parse(std::vector<std::string, std::allocator<std::string> >&) [81]
+                0.00    0.00       6/6           TCLAP::ValueArg<int>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [36]
+                0.00    0.00       6/6           TCLAP::ValueArg<double>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [35]
+                0.00    0.00       3/3           TCLAP::ValueArg<std::string>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&) [42]
+                0.00    0.00       3/3           TCLAP::XorHandler::check(TCLAP::Arg const*) [37]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[82]     0.0    0.00    0.00       1         TCLAP::CmdLine::parse(int, char const* const*) [82]
+                0.00    0.00       1/1           std::vector<std::string, std::allocator<std::string> >::vector() [90]
+                0.00    0.00       1/1           TCLAP::CmdLine::parse(std::vector<std::string, std::allocator<std::string> >&) [81]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[83]     0.0    0.00    0.00       1         TCLAP::CmdLine::CmdLine(std::string const&, char, std::string const&, bool) [83]
+                0.00    0.00       3/3           TCLAP::Arg::Arg(std::string const&, std::string const&, std::string const&, bool, bool, TCLAP::Visitor*) [39]
+                0.00    0.00       3/9           TCLAP::CmdLine::add(TCLAP::Arg*) [32]
+                0.00    0.00       1/1           std::vector<std::vector<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >, std::allocator<std::vector<TCLAP::Arg*, std::allocator<TCLAP::Arg*> > > >::vector() [89]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[84]     0.0    0.00    0.00       1         TCLAP::CmdLine::~CmdLine() [84]
+                0.00    0.00       3/3           TCLAP::SwitchArg::~SwitchArg() [45]
+                0.00    0.00       3/3           void TCLAP::DelPtr<TCLAP::Arg*>(TCLAP::Arg*) [40]
+                0.00    0.00       3/3           void TCLAP::DelPtr<TCLAP::Visitor*>(TCLAP::Visitor*) [41]
+                0.00    0.00       1/1           TCLAP::IgnoreRestVisitor::~IgnoreRestVisitor() [80]
+                0.00    0.00       1/1           TCLAP::VersionVisitor::~VersionVisitor() [79]
+                0.00    0.00       1/1           TCLAP::HelpVisitor::~HelpVisitor() [78]
+                0.00    0.00       1/1           TCLAP::StdOutput::~StdOutput() [87]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[85]     0.0    0.00    0.00       1         TCLAP::ValueArg<std::string>::ValueArg(std::string const&, std::string const&, std::string const&, bool, std::string, std::string const&, TCLAP::Visitor*) [85]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[86]     0.0    0.00    0.00       1         TCLAP::ValueArg<std::string>::~ValueArg() [86]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::~CmdLine() [84]
+[87]     0.0    0.00    0.00       1         TCLAP::StdOutput::~StdOutput() [87]
+-----------------------------------------------
+                0.00    0.00       1/1           __do_global_ctors_aux [340]
+[88]     0.0    0.00    0.00       1         __gnu_cxx::__exchange_and_add_dispatch(int*, int) [88]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::CmdLine(std::string const&, char, std::string const&, bool) [83]
+[89]     0.0    0.00    0.00       1         std::vector<std::vector<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >, std::allocator<std::vector<TCLAP::Arg*, std::allocator<TCLAP::Arg*> > > >::vector() [89]
+-----------------------------------------------
+                0.00    0.00       1/1           TCLAP::CmdLine::parse(int, char const* const*) [82]
+[90]     0.0    0.00    0.00       1         std::vector<std::string, std::allocator<std::string> >::vector() [90]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2015 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+   [4] computeAder(double, GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [5] rotateFluxSolver(double, double, double const*, double*) [81] TCLAP::CmdLine::parse(std::vector<std::string, std::allocator<std::string> >&)
+   [6] computeFlux(double, double const*, double const*, double const (&) [63], double*) [46] determineTimestep(double, double, Grid<Material>&) [82] TCLAP::CmdLine::parse(int, char const* const*)
+  [10] computeAplus(Material const&, Material const&, double*) [71] initSourcetermPhi(double, double, SourceTerm&) [83] TCLAP::CmdLine::CmdLine(std::string const&, char, std::string const&, bool)
+   [9] computeAminus(Material const&, Material const&, double*) [7] computeVolumeIntegral(GlobalConstants const&, Material const&, double const (&) [63], double (&) [63]) [84] TCLAP::CmdLine::~CmdLine()
+  [49] initScenario2(GlobalConstants&, Grid<Material>&, Grid<double [63]>&, SourceTerm&) [25] sourceFunctionAntiderivative(double) [42] TCLAP::ValueArg<std::string>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&)
+  [50] basisFunction0(double, double) [3] DGEMM(unsigned int, unsigned int, unsigned int, double, double const*, unsigned int, double const*, unsigned int, double, double*, unsigned int) [85] TCLAP::ValueArg<std::string>::ValueArg(std::string const&, std::string const&, std::string const&, bool, std::string, std::string const&, TCLAP::Visitor*)
+  [51] basisFunction1(double, double) [11] computeA(Material const&, double*) [86] TCLAP::ValueArg<std::string>::~ValueArg()
+  [52] basisFunction2(double, double) [12] computeB(Material const&, double*) [35] TCLAP::ValueArg<double>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&)
+  [53] basisFunction3(double, double) [2] simulate(GlobalConstants const&, Grid<Material>&, Grid<double [63]>&, WaveFieldWriter&, SourceTerm&) [47] TCLAP::ValueArg<double>::ValueArg(std::string const&, std::string const&, std::string const&, bool, double, std::string const&, TCLAP::Visitor*)
+  [54] basisFunction4(double, double) [26] WaveFieldWriter::writeTimestep(double, Grid<double [63]>&, bool) [48] TCLAP::ValueArg<double>::~ValueArg()
+  [55] basisFunction5(double, double) [72] WaveFieldWriter::WaveFieldWriter(std::string const&, GlobalConstants const&, double, int) [36] TCLAP::ValueArg<int>::processArg(int*, std::vector<std::string, std::allocator<std::string> >&)
+  [56] basisFunction6(double, double) [73] WaveFieldWriter::~WaveFieldWriter() [43] TCLAP::ValueArg<int>::ValueArg(std::string const&, std::string const&, std::string const&, bool, int, std::string const&, TCLAP::Visitor*)
+  [57] basisFunction7(double, double) [74] Grid<Material>::Grid(int, int) [44] TCLAP::ValueArg<int>::~ValueArg()
+  [58] basisFunction8(double, double) [75] Grid<Material>::~Grid() [87] TCLAP::StdOutput::~StdOutput()
+  [59] basisFunction9(double, double) [76] Grid<double [63]>::Grid(int, int) [45] TCLAP::SwitchArg::~SwitchArg()
+  [60] basisFunction10(double, double) [77] Grid<double [63]>::~Grid() [28] __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  [61] basisFunction11(double, double) [37] TCLAP::XorHandler::check(TCLAP::Arg const*) [88] __gnu_cxx::__exchange_and_add_dispatch(int*, int)
+  [62] basisFunction12(double, double) [78] TCLAP::HelpVisitor::~HelpVisitor() [29] TCLAP::Arg::argMatches(std::string const&) const
+  [63] basisFunction13(double, double) [38] void TCLAP::ExtractValue<int>(int&, std::string const&, TCLAP::ValueLike) [31] TCLAP::Arg::isRequired() const
+  [64] basisFunction14(double, double) [79] TCLAP::VersionVisitor::~VersionVisitor() [30] TCLAP::Arg::trimFlag(std::string&, std::string&) const
+  [65] basisFunction15(double, double) [80] TCLAP::IgnoreRestVisitor::~IgnoreRestVisitor() [33] TCLAP::Arg::addToList(std::list<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >&) const
+  [66] basisFunction16(double, double) [39] TCLAP::Arg::Arg(std::string const&, std::string const&, std::string const&, bool, bool, TCLAP::Visitor*) [27] TCLAP::Arg::operator==(TCLAP::Arg const&) const
+  [67] basisFunction17(double, double) [40] void TCLAP::DelPtr<TCLAP::Arg*>(TCLAP::Arg*) [89] std::vector<std::vector<TCLAP::Arg*, std::allocator<TCLAP::Arg*> >, std::allocator<std::vector<TCLAP::Arg*, std::allocator<TCLAP::Arg*> > > >::vector()
+  [68] basisFunction18(double, double) [41] void TCLAP::DelPtr<TCLAP::Visitor*>(TCLAP::Visitor*) [90] std::vector<std::string, std::allocator<std::string> >::vector()
+  [69] basisFunction19(double, double) [32] TCLAP::CmdLine::add(TCLAP::Arg*) [8] __intel_mic_avx512f_memset
+  [70] basisFunction20(double, double) [34] TCLAP::CmdLine::add(TCLAP::Arg&)

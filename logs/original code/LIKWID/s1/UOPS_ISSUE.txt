@@ -1,0 +1,68 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: UOPS_ISSUE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.100892 |
+|     call count    |     1    |
++-------------------+----------+
++---------------------------------+-----------------+-------------+
+|              Event              |     Counter     |    Core 0   |
++---------------------------------+-----------------+-------------+
+|        INSTR_RETIRED_ANY        |      FIXC0      | 13224210000 |
+|      CPU_CLK_UNHALTED_CORE      |      FIXC1      |  3628684000 |
+|       CPU_CLK_UNHALTED_REF      |      FIXC2      |  2859221000 |
+|     UOPS_ISSUED_USED_CYCLES     |       PMC0      |  3569302000 |
+|     UOPS_ISSUED_STALL_CYCLES    |       PMC1      |   62156750  |
+| CPU_CLOCK_UNHALTED_TOTAL_CYCLES |       PMC2      |  3631459000 |
+|     UOPS_ISSUED_STALL_CYCLES    | PMC3:EDGEDETECT |   12937530  |
++---------------------------------+-----------------+-------------+
++-----------------------------+-----------+
+|            Metric           |   Core 0  |
++-----------------------------+-----------+
+|     Runtime (RDTSC) [s]     |   1.1009  |
+|     Runtime unhalted [s]    |   1.3957  |
+|         Clock [MHz]         | 3299.6931 |
+|             CPI             |   0.2744  |
+|    Used cycles ratio [%]    |  98.2884  |
+|   Unused cycles ratio [%]   |   1.7116  |
+| Avg stall duration [cycles] |   4.8044  |
++-----------------------------+-----------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: UOPS_ISSUE
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.008821 |
+|     call count    |     1    |
++-------------------+----------+
++---------------------------------+-----------------+----------+
+|              Event              |     Counter     |  Core 0  |
++---------------------------------+-----------------+----------+
+|        INSTR_RETIRED_ANY        |      FIXC0      | 23761000 |
+|      CPU_CLK_UNHALTED_CORE      |      FIXC1      | 10701760 |
+|       CPU_CLK_UNHALTED_REF      |      FIXC2      | 22787700 |
+|     UOPS_ISSUED_USED_CYCLES     |       PMC0      |  6762211 |
+|     UOPS_ISSUED_STALL_CYCLES    |       PMC1      |  4057670 |
+| CPU_CLOCK_UNHALTED_TOTAL_CYCLES |       PMC2      | 10819880 |
+|     UOPS_ISSUED_STALL_CYCLES    | PMC3:EDGEDETECT |  2329804 |
++---------------------------------+-----------------+----------+
++-----------------------------+-----------+
+|            Metric           |   Core 0  |
++-----------------------------+-----------+
+|     Runtime (RDTSC) [s]     |   0.0088  |
+|     Runtime unhalted [s]    |   0.0041  |
+|         Clock [MHz]         | 1221.0314 |
+|             CPI             |   0.4504  |
+|    Used cycles ratio [%]    |  62.4980  |
+|   Unused cycles ratio [%]   |  37.5020  |
+| Avg stall duration [cycles] |   1.7416  |
++-----------------------------+-----------+

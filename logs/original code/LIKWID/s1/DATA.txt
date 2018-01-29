@@ -1,0 +1,60 @@
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region simulate, Group 1: DATA
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 1.160510 |
+|     call count    |     1    |
++-------------------+----------+
++-------------------------+---------+-------------+
+|          Event          | Counter |    Core 0   |
++-------------------------+---------+-------------+
+|    INSTR_RETIRED_ANY    |  FIXC0  | 13224210000 |
+|  CPU_CLK_UNHALTED_CORE  |  FIXC1  |  3635331000 |
+|   CPU_CLK_UNHALTED_REF  |  FIXC2  |  3006981000 |
+|  MEM_UOPS_RETIRED_LOADS |   PMC0  |  2748506000 |
+| MEM_UOPS_RETIRED_STORES |   PMC1  |  383458600  |
++-------------------------+---------+-------------+
++----------------------+-----------+
+|        Metric        |   Core 0  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |   1.1605  |
+| Runtime unhalted [s] |   1.3982  |
+|      Clock [MHz]     | 3143.2756 |
+|          CPI         |   0.2749  |
+|  Load to store ratio |   7.1677  |
++----------------------+-----------+
+--------------------------------------------------------------------------------
+CPU name:	Intel(R) Xeon(R) CPU E5-2697 v3 @ 2.60GHz
+CPU type:	Intel Xeon Haswell EN/EP/EX processor
+CPU clock:	2.60 GHz
+--------------------------------------------------------------------------------
+Region initScenario, Group 1: DATA
++-------------------+----------+
+|    Region Info    |  Core 0  |
++-------------------+----------+
+| RDTSC Runtime [s] | 0.008923 |
+|     call count    |     1    |
++-------------------+----------+
++-------------------------+---------+----------+
+|          Event          | Counter |  Core 0  |
++-------------------------+---------+----------+
+|    INSTR_RETIRED_ANY    |  FIXC0  | 23760180 |
+|  CPU_CLK_UNHALTED_CORE  |  FIXC1  | 10674750 |
+|   CPU_CLK_UNHALTED_REF  |  FIXC2  | 23128690 |
+|  MEM_UOPS_RETIRED_LOADS |   PMC0  |  7280994 |
+| MEM_UOPS_RETIRED_STORES |   PMC1  |  1707143 |
++-------------------------+---------+----------+
++----------------------+-----------+
+|        Metric        |   Core 0  |
++----------------------+-----------+
+|  Runtime (RDTSC) [s] |   0.0089  |
+| Runtime unhalted [s] |   0.0041  |
+|      Clock [MHz]     | 1199.9851 |
+|          CPI         |   0.4493  |
+|  Load to store ratio |   4.2650  |
++----------------------+-----------+
