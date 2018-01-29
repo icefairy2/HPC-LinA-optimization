@@ -121,7 +121,7 @@ void DGEMM(unsigned M_,
 		DGEMMm81n3k66a1b0(A,B,C);
 	}
 	else if (M_ == 81 && N_ == 3 && K_ == 78 && alpha == 1 && beta == 0 && lda == 81 && ldb == 78 && ldc == 81) {
-		DGEMMm6n3k6a1b0(A,B,C);
+    DGEMMm81n3k78a1b0(A,B,C);
 	}
 	else {
 		//DGEMM_old(M_, N_, K_, alpha, A, lda, B, ldb, beta, C, ldc);
@@ -337,18 +337,6 @@ void inner512_8x8(int K_,
 		
 		// Unroll 0
 		a_0k_1k_2k_3k_4k_5k_6k_7k_v = _mm512_load_pd( (double *) &A(0,k,lda));
-		
-		/** we left this here to show that we tried to use packing for A and B*/
-		//use for packing B
-		//b_k0_v2 = _mm512_set1_pd(B[b]);
-		//b_k1_v2 = _mm512_set1_pd(B[b+1]);
-		//b_k2_v2 = _mm512_set1_pd(B[b+2]);
-		//b_k3_v2 = _mm512_set1_pd(B[b+3]);
-		//b_k4_v2 = _mm512_set1_pd(B[b+4]);
-		//b_k5_v2 = _mm512_set1_pd(B[b+5]);
-		//b_k6_v2 = _mm512_set1_pd(B[b+6]);
-		//b_k7_v2 = _mm512_set1_pd(B[b+7]);	
-	    //b+=8;
 		
 		b_k0_v2 = _mm512_set1_pd(B(k,0,ldb));
 		b_k1_v2 = _mm512_set1_pd(B(k,1,ldb));
